@@ -1,0 +1,13 @@
+{
+    "name": "mError",
+    "version": "0.0.1",
+    "description": "mError",
+    "main": "errorResponse.js",
+    "author": {
+        "name": "Ayman Habeb",
+        "email": "ahabeb@madaincorp.com"
+    },
+    "dependencies": {
+        "mLogger": "*"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "mEmail",
+    "version": "0.0.1",
+    "description": "Sending Emails",
+    "main": "index.js",
+    "author": {
+        "name": "Rami Abdel Hadi",
+        "email": "rabdelhadi@madaincorp.com"
+    },
+    "dependencies": {
+        "mandrill-api": "*"
+    }
+}
+

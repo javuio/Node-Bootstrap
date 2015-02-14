@@ -1,0 +1,39 @@
+
+
+<section class="panel">
+    <header class="panel-heading">
+        Customer Contact
+    </header>
+    <div class="panel-body">
+        <form id="divCustomer" role="form">
+            <div class="form-group">
+                <label>Tel</label>
+                <input type="tel" class="form-control" id="txtTel" placeholder="Tel" maxlength="15" required />
+            </div>
+            <div class="form-group name">
+                <label>Name</label>
+                <input type="text" class="form-control" id="txtName" placeholder="Name" maxlength="150" />
+            </div>
+            <div class="form-group email">
+                <label>Email</label>
+                <input type="email" class="form-control" id="txtEmail" placeholder="Email" maxlength="160" />
+            </div>
+            <div class="form-group purchase">
+                <label>Purchase</label>
+                <input type="number" class="form-control" id="txtPurchase" placeholder="Purchase Amount" maxlength="10" />
+            </div>
+            <div class="form-group notes">
+                <label>Notes</label>
+                <textarea rows="6" class="form-control" id="txtNotes" placeholder="Notes" maxlength="3000" />
+            </div>
+
+            <button id="btnSave" class="btn btn-primary" >Save</button>
+
+        </form>
+    </div>
+</section>
+
+
+<script>
+    require(['pages/settings/settings'], function (p) { p.init(); });
+</script>

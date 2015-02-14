@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="MadainCorp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>Register</title>
+
+    <!--Core CSS -->
+    <link href="/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles/bootstrap-reset.css" rel="stylesheet">
+    <link href="/styles/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/bootstrapValidator.min.css" />
+    <!-- Custom styles for this template -->
+    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/style-responsive.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Optional theme -->
+    <link href="/styles/main.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/scripts/lib/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/scripts/lib/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/scripts/lib/require.js"></script>
+    <script>
+        requirejs.config({
+            appDir: "../"
+            , baseUrl: 'scripts/framework'
+
+            , paths: {
+                lib: '../lib'
+                , pages: '../../pages'
+                , "jquery": "../lib/jquery.min"
+                , "bootstrap": "../lib/bootstrap.min"
+                , "bootstrapValidator": "../lib/bootstrapValidator.min"
+                , "niceScroll": "../templateJs/jquery.nicescroll"
+            },
+            shim: {
+                "bootstrapValidator": { "deps": ['bootstrap'] },
+                "bootstrap": { "deps": ['jquery'] },
+                "niceScroll": { "deps": ['jquery'] }
+            }
+
+        });
+
+        function showAlert(style, message) {
+            $('[role=alert]').addClass('alert alert-' + style).html(message).slideDown();
+        }
+        function hideAlert() {
+            $('[role=alert]').removeClass().hide().html('');
+        }
+    </script>
+    <!-- common api framework -->
+    <script src="/scripts/framework/api.js"></script>
+    <!-- utilities lib -->
+    <script src="/scripts/lib/utilities.js"></script>
+</head>
+<body class="login-body">
+
+<section class="panel" style="max-width:800px;margin:auto; margin-top: 50px;">
+    <header class="panel-heading">
+        Register
+    </header>
+    <div class="panel-body">
+        <div id="alert"></div>
+        <form id="frmRegistrationForm" role="form" method="post" target="_top">
+            <div class="form-group">
+                <label>email</label>
+                <input type="email" class="form-control" id="txtEmail" placeholder="email" required />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="txtPassword" placeholder="password" required />
+                <input type="password" class="form-control" id="txtConfirm" placeholder="confirm" required />
+            </div>
+
+            <div class="form-group">
+                <label>Payment Options</label>
+                <select name="os0" class="form-control">
+                    <option value="test">TEST : $0.00 USD - yearly</option>
+                    <option value="Monthly">Monthly : $9.99 USD - monthly</option>
+                    <option value="Annually">Annually : $99.99 USD - yearly</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="LVPCVWC8FDXUY">
+            <input type="hidden" name="currency_code" value="USD">
+
+            <button id="btnRegister" class="btn btn-primary" >Subscribe</button>
+
+        </form>
+    </div>
+
+</section>
+<script>
+    require(['pages/register/register'], function (p) { p.init(); });
+</script>
+</body>
+</html>

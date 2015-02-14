@@ -1,0 +1,14 @@
+﻿ {
+ "name": "mLogger",
+ "version": "0.0.1",
+ "description": "logger",
+ "main": "logger.js",
+ "author": {
+ "name": "Daniel Hindi",
+ "email": "daniel@madaincorp.com"
+ },
+ "dependencies": {
+ "winston": "0.8.3",
+ "winston-loggly" : "1.0.2"
+ }
+}

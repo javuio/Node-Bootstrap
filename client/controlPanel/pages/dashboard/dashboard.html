@@ -1,0 +1,142 @@
+﻿<style>
+    .panel-body div {
+        margin: 6px 0;
+    }
+
+    .tiles .alert .glyphicon, .tiles .alert .count {
+        font-size: xx-large;
+    }
+
+    .floatingText {
+        color: white;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+    }
+
+    .task-info {
+        height: 80px;
+        width: 100%;
+    }
+
+        .task-info .desc {
+            margin: 0 !important;
+        }
+
+    .defaultOfferText {
+        display:inline-block;
+        background-color:rgba(188,215,67,.6);
+        position:relative;
+        left:50%;
+        transform:translateX(-50%);
+        border-radius:5px;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        padding:12px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <p class="pull-right floatingText">Calculations for the past 30 days</p>
+    </div>
+</div>
+<div class="row tiles">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6" id="dvTotalProcessed">
+                <div class="mini-stat clearfix homeClickable">
+                    <div class="mini-stat-info">
+                        <span id="txtTotalProcessed" class="count">0</span>
+                        TOTAL PROCESSED
+                    </div>
+                </div>
+                <!--/.TOTAL PROCESSED-->
+            </div>
+            <!--/.col-->
+
+            <div class="col-lg-6 col-md-6 col-sm-6" id="dvNumberOfCustomers">
+
+                <div class="mini-stat clearfix homeClickable">
+                    <div class="mini-stat-info">
+                        <span id="txtNumberOfCustomers" class="count">0</span>
+                        Number of Customers
+                    </div>
+                </div>
+                <!--/.NEW CUSTOMERS -->
+            </div>
+            <!--/.col-->
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6" id="dvSpentByCustomers">
+                <div class="mini-stat clearfix homeClickable">
+                    <div class="mini-stat-info">
+                        <span id="txtSpentByCustomers" class="count">0</span>
+                        Spent By Customers
+                    </div>
+                </div>
+                <!--/.REWARDS EARNED-->
+            </div>
+            <!--/.col-->
+
+            <div class="col-lg-6 col-md-6 col-sm-6" id="dvNumberOfCustomers">
+                <div class="mini-stat clearfix homeClickable">
+                    <div class="mini-stat-info">
+                        <span id="txtNumberOfCustomers" class="count">0</span>
+                        Customers
+                    </div>
+                </div>
+                <!--/.SIGNED UP WITH YOU-->
+            </div>
+            <!--/.col-->
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <section class="panel">
+            <div class="panel-body tasks-bar">
+                <div class="task-info clearfix VcenterContainer">
+                    <div class="desc pull-left">
+                        <h5>YOUR AVERAGE CUSTOMERS SPENDS</h5>
+                        <p id="txtUserSpendsAvg">0</p>
+                    </div>
+                    <img class="pull-right VcenterHelper" src="/images/chart1.png" />
+                </div>
+                <div class="task-info clearfix VcenterContainer">
+                    <div class="desc pull-left">
+                        <h5>NEW CUSTOMERS </h5>
+                        <p id="txtNewCustomersPercent">0</p>
+                    </div>
+                    <span id="chartNewCustomers" class="notification-pie-chart pull-right VcenterHelper" data-percent="0">
+                        <span class="percent"></span>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                UPCOMING OFFERS
+            </header>
+            <div id="upCommingOffersPanel"  class="panel-body">
+                <div class="defaultOfferText"><span id="txtDefaultOfferRate"></span></div>
+                <button id="btnManageOffers" type="button" class="btn btn-primary pull-right">Manage Offers</button>
+                <table id="tblUpcommingOffers" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Offer Name</th>
+                            <th>Offer start - end</th>
+                            <th>Offer Percent</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<script>
+    require(['pages/dashboard/dashboard'], function (p) { p.init(); });
+</script>
