@@ -46,13 +46,13 @@ DELIMITER ;
 
 
 insert ignore into users (username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('fb@javu.io', null, 'fb', null, null, null, null, null, null, '11111111-1111-1111-1111-111111111111', '00000000-0000-0000-0000-000000000000', UTC_TIMESTAMP());
+values	('fb@javu.io', null, 'fb', 'FaceBook', 'user', null, null, null, null, '11111111-1111-1111-1111-111111111111', '00000000-0000-0000-0000-000000000000', UTC_TIMESTAMP());
 
 insert ignore into users (username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('CommonUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', null, null, null, null, null, null, UUID(), UUID(), UTC_TIMESTAMP());
+values	('CommonUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'Common', 'User', null, null, null, null, UUID(), UUID(), UTC_TIMESTAMP());
 
 insert ignore into users (username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('CPUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', null, null, null, null, null, null, UUID(), UUID(),UTC_TIMESTAMP());
+values	('CPUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'CP', 'User', null, null, null, null, UUID(), UUID(),UTC_TIMESTAMP());
 
 insert ignore into users(username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('AdminUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', null, null, null, null, null, null, UUID(), UUID(),UTC_TIMESTAMP());
+values	('AdminUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'Admin', 'User', null, null, null, null, UUID(), UUID(),UTC_TIMESTAMP());

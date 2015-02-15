@@ -1,19 +1,29 @@
-﻿
-define('authManager', {
-    /*
-        Keeps state of logged in user and caches login token in a cookie for 3 hours
-        singleton
-    */
-    _currentUser: null
-    , _tmrCheckSession: null
-
-    , getCurrentUser: function () {
+﻿define('authManager', function () {
+    return {
+        /*
+         Keeps state of logged in user and caches login token in a cookie for 3 hours
+         singleton
+         */
+        _currentUser: null
+        , _tmrCheckSession: null
+        , attemptAutoLogin: function () {
+            var user = this.getCurrentUser();
+            if(user)
+                this._loggedIn(user);
+            return user;
+        }
+        ,getCurrentUser    :    function () {
         if (this._currentUser)
             return this._currentUser;
         else if (localStorage.user) {
             var user;
-            try { user = JSON.parse(localStorage.user); }
-            catch (e) { this.setCurrentUser(null); }
+            try {
+                user = JSON.parse(localStorage.user);
+                //this._loggedIn(user);
+            }
+            catch (e) {
+                this.setCurrentUser(null);
+            }
             if (user && user.userToken)
                 return user;
             else {
@@ -24,7 +34,9 @@ define('authManager', {
         else
             return null;
     }
-    , setCurrentUser: function (user) {
+
+    ,
+    setCurrentUser: function (user) {
         var currentUser = user;
         if (user) {
             currentUser = this.getCurrentUser();
@@ -42,12 +54,14 @@ define('authManager', {
         }
         this._currentUser = currentUser;
     }
-    , isUserLoggedIn: function () {
+    ,
+    isUserLoggedIn: function () {
         return (this.getCurrentUser() != null);
     }
-    , login: function (email, password, callback) {
+    ,
+    login: function (email, password, callback) {
         var t = this;
-        api.post('/login/std', { email: email, password: password }
+        api.post('/login/std', {email: email, password: password}
             , function (err, result) {
                 if (err)
                     callback(err);
@@ -57,23 +71,31 @@ define('authManager', {
                 }
             });
     }
-    , _loggedIn: function (user) {
+    ,
+    _loggedIn: function (user) {
         this.setCurrentUser(user);
         if (user)
             this.loginHandler(user);
     }
-    , loginHandler: function (user) {
+    ,
+    loginHandler: function (user) {
     }
-    , logout: function () {
+    ,
+    logout: function () {
         if (this.getCurrentUser() != null) {
             //api.call( 1, 'users/logout', { token: authManager._currentUser.userToken });
             this.setCurrentUser(null);
         }
         this.logoutHandler();
     }
-    , logoutHandler: function () {
+    ,
+    logoutHandler: function () {
         localStorage.clear();
     }
-    , resetPassword: function (UserTokenname, callback) {
+    ,
+    resetPassword: function (UserTokenname, callback) {
     }
-});
+}
+
+})
+;

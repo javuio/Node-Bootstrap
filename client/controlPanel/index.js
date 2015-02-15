@@ -4,10 +4,6 @@
     require(['masterPageController', 'mainMenu', 'manifest','uiManager'], function (masterPageController, mainMenu, manifest,uiManager) {
         var loginHandler = function(user){
 
-            require(['profileControl'], function(profileControl){
-                profileControl.setUser(user);
-            });
-
             var newHash = window.location.hash.substring(1);
             newHash= newHash.replace('/','');
             if (newHash.length == 0 ){

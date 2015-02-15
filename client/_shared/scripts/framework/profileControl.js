@@ -2,9 +2,7 @@
     , function () {
         var profileControl = {
             setUser: function (user) {
-
                 if (user) {
-
                     $('#currentUserName:first').text(user.firstName);
 
                     $('#profileLogout:first').click(

@@ -54,7 +54,7 @@ define( function () {
         }
         */
         , loadContentObj: function (configObj, segments) {
-            if (!configObj) { debugger; return; }
+            if (!configObj) {  return; }
             if (typeof (configObj) == "string")
                 configObj = this.configs[configObj];
             this.loadContent(configObj.pageName, configObj.pageUrl, configObj.jsFiles, configObj.cssFiles, segments, configObj.callback);

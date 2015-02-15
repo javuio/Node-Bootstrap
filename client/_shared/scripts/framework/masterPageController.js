@@ -1,5 +1,5 @@
 ﻿
-define('masterPageController', ['manifest', 'authManager'], function (manifest, authManager) {
+define('masterPageController', ['manifest', 'authManager','profileControl'], function (manifest, authManager,profileControl) {
 
     function masterPageController(manifest) {
         this.subPagesManifest = manifest;
@@ -12,6 +12,7 @@ define('masterPageController', ['manifest', 'authManager'], function (manifest, 
             var t = this;
             /// override the login and logout handlers in auth manager
             authManager.logoutHandler = function () {
+                profileControl.setUser(null);
                 if (options.logoutHandler) {
                     options.logoutHandler(function () {
                         return t._logOutHandler();
@@ -21,6 +22,7 @@ define('masterPageController', ['manifest', 'authManager'], function (manifest, 
                     return t._logOutHandler();
             };
             authManager.loginHandler = function (user) {
+                profileControl.setUser(user);
                 if (options.loginHandler) {
                     options.loginHandler(user, function () {
                         return t._loginHandler(user);
@@ -30,7 +32,9 @@ define('masterPageController', ['manifest', 'authManager'], function (manifest, 
                     return t._loginHandler(user);
             };
 
-            /// set the main dynamic controler container
+            authManager.attemptAutoLogin();
+
+            /// set the main dynamic controller container
             this.$dynamicContentContainer = $('#dynamicContentContainer:first');
 
 /*
@@ -74,8 +78,9 @@ define('masterPageController', ['manifest', 'authManager'], function (manifest, 
                 this.load(hash, segments.join("/"));
             else
                 this.load('dashboard');
-
+debugger;
             require(['profileControl'], function (profileControl) {
+                debugger;
                 profileControl.setUser(user);
             });
         }
