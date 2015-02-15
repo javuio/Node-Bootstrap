@@ -14,8 +14,14 @@
             ,'404':{ pageTitle: 'Page not Found', pageUrl: '/pages/404/404.html'}
         }
         , load: function (configName, segments) {
-            if(typeof(this.pages[configName])== 'undefined')
+            if(configName == '')
+                configName='dashboard';
+
+            if(typeof(this.pages[configName])== 'undefined'){
+                console.log('configName "' + configName + '" was not found redirecting to 404');
                 configName="404";
+
+            }
             this.dynamicLoader.loadContentObj(this.pages[configName], segments);
 
         }

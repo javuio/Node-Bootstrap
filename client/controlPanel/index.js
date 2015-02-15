@@ -10,7 +10,10 @@
 
             var newHash = window.location.hash.substring(1);
             newHash= newHash.replace('/','');
-            if (newHash.length == 0 ) newHash = 'home';
+            if (newHash.length == 0 ){
+                newHash = 'dashboard';
+                console.log('default route to dashboard');
+            }
             masterPageController.load(newHash);
         };
         masterPageController.init({ loginHandler: loginHandler });

@@ -8,7 +8,7 @@
             , login: { externalPage: true, mainMenuLabel: false, pageTitle: 'Login', pageUrl: '/login.html', jsFiles: [], cssFiles: [], callback: null }
             , forgetPassword: { externalPage: true, mainMenuLabel: false, pageTitle: 'Forget Password', pageUrl: '/forgetPassword.html', jsFiles: [], cssFiles: [], callback: null }
             , resetPassword: { externalPage: true, mainMenuLabel: false, pageTitle: 'Reset Password', pageUrl: '/resetPassword.html', jsFiles: [], cssFiles: [], callback: null }
-            , home: { mainMenuLabel: 'Dashboard', pageTitle: 'Dashboard', icon: 'fa-dashboard', menuId: 'menuHome', pageUrl: '/pages/home/home.html', jsFiles: [], cssFiles: [], callback: null }
+            , dashboard: { mainMenuLabel: 'Dashboard', pageTitle: 'Dashboard', icon: 'fa-dashboard', menuId: 'menuHome', pageUrl: '/pages/home/home.html', jsFiles: [], cssFiles: [], callback: null }
             , manageUsers: { mainMenuLabel: 'Manage Users', pageTitle: 'Manage Users', icon: 'fa-users', menuId: 'menuManageUsers', pageUrl: '/pages/userManagement/userManagement.html', jsFiles: [], cssFiles: [], callback: null }
             , profile: { mainMenuLabel: false, pageTitle: 'profile', icon: null, pageUrl: '/pages/profile/profile.html', jsFiles: [], cssFiles: [], callback: null }
            }

@@ -73,7 +73,7 @@ define('masterPageController', ['manifest', 'authManager'], function (manifest, 
             if (hash && this.subPagesManifest.pages[hash])
                 this.load(hash, segments.join("/"));
             else
-                this.load('home');
+                this.load('dashboard');
 
             require(['profileControl'], function (profileControl) {
                 profileControl.setUser(user);
