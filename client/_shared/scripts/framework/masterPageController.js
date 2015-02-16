@@ -48,7 +48,7 @@ define('masterPageController', ['manifest', 'authManager','profileControl'], fun
 */
 
             /// if a hash tag is already passed, use it
-            this.load(window.location.hash.substring(1).replace("/",""));
+            //this.load(window.location.hash.substring(1).replace("/",""));
 
 
 

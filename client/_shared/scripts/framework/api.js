@@ -19,7 +19,10 @@
     }
     , call: function (verb, url, params, callback) {
 
-        //if ( typeof ( params ) == "string" ) params = JSON.parse( params );
+        if ( typeof ( params ) == "function" && typeof(callback)=="undefined" ) {
+            callback= params ;
+            params=null;
+        }
 
         var currentUser = null;
         var header = null;

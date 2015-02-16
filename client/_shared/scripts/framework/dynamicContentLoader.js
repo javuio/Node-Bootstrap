@@ -71,10 +71,12 @@ define( function () {
         callback: is a function that is called when everything is loaded
         */
         , loadContent: function (pageName, pageUrl, jsFiles, cssFiles, segments, callback) {
-            //distroy old content resources
+            console.log('dynamically load',pageName,pageUrl);
+
+            //destroy old content resources
             this.clear();
 
-            if (pageName && !pageUrl && this.configs && this.configs[pageName]) {// load from congig
+            if (pageName && !pageUrl && this.configs && this.configs[pageName]) {// load from config
                 this.loadContentObj(this.configs[pageName], segments);
                 return;
             }
