@@ -1,5 +1,5 @@
 ﻿var cryptUtils = require('../../../../utils/cryptUtils.js');
-var errorResponse = require('mError/errorResponse.js');
+var errorResponse = require('../../../errorResponse.js');
 var apiHandler = require('../../../apiHandler.js');
 var users = require('../../../../dao/users.js');
 
@@ -8,11 +8,11 @@ function createAPI(app) {
     handler.requiresPermission = 'AdminPortal';
     handler.validateData = function (req, res) {
         return req.body.currentPassword && req.body.newPassword;
-    }
+    };
     
     handler.securityCheck = function (req, res) {
         return true;
-    }
+    };
     handler.post = function (req, res) {
         if (handler.validateData(req, res)) {
 

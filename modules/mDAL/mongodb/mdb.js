@@ -1,7 +1,8 @@
-var log = require('mLogger/logger.js');
+
 var mongo = require('mongodb');
 
-function mogcoClient(){
+function mogcoClient(logger){
+    this.logger = logger;
 }
 
 mogcoClient.prototype = {
@@ -10,20 +11,20 @@ mogcoClient.prototype = {
     , init: function (config, callback) {
         var self = this;
         this.config = config;
-        console.log('INIT DB');
+        this.logger.log('INIT DB');
         if (this.db) {
             callback(null, this.db);
             return;
         }
         mongo.MongoClient.connect(this.config.connectionString, function (err, db) {
             if (err) {
-                log.error("cant connect to mongodb." + JSON.stringify(err));
+                this.logger.error("cant connect to mongodb." + JSON.stringify(err));
                 callback(err, null);
             }
             else {
                 self.db = db;
 
-                log.debug('mongodb Initialized');
+                this.logger.debug('mongodb Initialized');
                 if (callback)
                     callback(null, self.db);
             }
@@ -32,7 +33,7 @@ mogcoClient.prototype = {
     , getCollection: function (collection, callback) {
         var self = this;
         if (!this.db) {
-            log.warn('mongodb not ready');
+            this.logger.warn('mongodb not ready');
             
             this.init(this.config, function (err, db) {
                 if (err) {
@@ -50,7 +51,7 @@ mogcoClient.prototype = {
     , dropCollection: function (collection, callback) {
         var self = this;
         if (!this.db) {
-            log.warn('mongodb not ready');
+            this.logger.warn('mongodb not ready');
             
             this.init(this.config, function (err, db) {
                 if (err) {

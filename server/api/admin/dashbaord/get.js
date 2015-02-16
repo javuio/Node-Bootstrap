@@ -1,9 +1,9 @@
 ﻿var apiHandler = require( '../../apiHandler.js' );
-var errorResponse = require( 'mError/errorResponse.js' );
+var errorResponse = require( '../../errorResponse.js' );
 var users = require( '../../../dao/users.js' );
 
 function createAPI( app ) {
-    var handler = new apiHandler( '/api/admin/dashbaord', '' );
+    var handler = new apiHandler( '/api/admin/dashboard', '' );
 
     handler.requiresPermission = "AdminPortal";
 

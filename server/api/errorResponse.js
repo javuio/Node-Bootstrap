@@ -1,9 +1,10 @@
-﻿var logger = require('mLogger/logger.js');
+﻿var logger = require('../utils/logger.js');
+var config = require('../config.js');
 
 function errorResponse() {
     this.code;
     this.message;
-    this.debugMode = false;
+    this.debugMode = config.debugMode;
 }
 
 errorResponse.prototype = {

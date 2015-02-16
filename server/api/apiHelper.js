@@ -1,4 +1,4 @@
-﻿var logger = require('mLogger/logger.js');
+﻿var logger = require('../utils/logger.js');
 
 module.exports = {
     init: function (app) {

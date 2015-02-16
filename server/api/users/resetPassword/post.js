@@ -2,7 +2,7 @@
 var users = require('../../../dao/users.js');
 var cryptUtils = require('../../../utils/cryptUtils.js');
 var tempAuthKeys = require('../../../dao/tempAuthKeys.js');
-var errorResponse = require('mError/errorResponse.js');
+var errorResponse = require('../../errorResponse.js');
 
 function createAPI(app) {
     var handler = new apiHandler('/api/users/resetPassword/', './users/resetPassword/postTest.js'); // TODO: Disabled resetPassword test untill new resetPassword is implemented

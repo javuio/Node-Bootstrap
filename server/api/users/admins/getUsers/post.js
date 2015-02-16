@@ -1,5 +1,5 @@
 ﻿var apiHandler = require('../../../apiHandler.js');
-var errorResponse = require('mError/errorResponse.js');
+var errorResponse = require('../../../errorResponse.js');
 var user = require('../../../../dao/users.js');
 
 function createAPI(app) {

@@ -1,8 +1,5 @@
 ﻿var config = require('../config.js');
+var logger = require('../utils/logger.js');
 var mysqlConnection = require("mDAL/mysql/mysqlDAL.js");
-var conn = new mysqlConnection();
-
 console.log('Connect to mysql DB');
-conn.init(config.mysqlConfig);
-module.exports =conn;
-
+module.exports= new mysqlConnection(config.mysqlConfig,logger);

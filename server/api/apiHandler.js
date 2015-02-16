@@ -1,5 +1,5 @@
 ﻿var passport = require('passport');
-var errorResponse = require('mError/errorResponse.js');
+var errorResponse = require('./errorResponse.js');
 var apiAuthorization = require('./apiAuthorization');
 
 function apiHandler(route, testPath) {

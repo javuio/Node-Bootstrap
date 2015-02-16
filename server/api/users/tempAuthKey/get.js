@@ -1,5 +1,5 @@
 ﻿var apiHandler = require('../../apiHandler.js');
-var errorResponse = require('mError/errorResponse.js');
+var errorResponse = require('../../errorResponse.js');
 var tempAuthKeys = require('../../../dao/tempAuthKeys.js');
 var users = require('../../../dao/users.js');
 

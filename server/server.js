@@ -1,9 +1,6 @@
 ﻿/// import configuration /////////////////////////////////////////////////
 var config = require('./config.js');
 
-/// initialize modules
-require('./utils/configManager.js')(config);
-
 /// create http server //////////////////////////////////////////////////////
 var express = require('express');
 var http = require('http');

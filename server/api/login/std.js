@@ -1,5 +1,5 @@
 ﻿var cryptUtils =  require('../../utils/cryptUtils.js');
-var errorResponse = require('mError/errorResponse.js');
+var errorResponse = require('../errorResponse.js');
 var apiHandler = require('../apiHandler.js');
 var validator = require('../../utils/validator.js');
 var users = require('../../dao/users.js');

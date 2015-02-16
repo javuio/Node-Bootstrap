@@ -16,7 +16,7 @@ var environments = {
         ,mysqlConfig : {
             host : '127.0.0.1'
             ,user: 'apiUser' /// only has execution rights
-            ,password: 'apiUser'
+            ,password: '!javu10APIUs3r321!'
             ,database: productName
             , timezone: 'utc'
         }
@@ -42,10 +42,6 @@ var environments = {
         forgetPasswordSenderEmail: "support@javu.io",
         resetPasswordPage: "http://localhost:1348/resetPassword.html?tempAuthKey={authKey}",
         cypherKey : "91b7bd62-5959-46c3-9a96-bcfd0a0de372",
-        AWSConfig : {
-            accessKeyId: "AKIAIX7DGFH4Z3OWCT6A", secretAccessKey: "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",
-            region: "us-west-2", bucketUpload: 'dev-' + productName
-        },
         mongoDBServer: { connectionString: "mongodb://54.149.71.236:1333/" + productName }
     },
     devControlPanel: {
@@ -59,8 +55,8 @@ var environments = {
         ]
         ,mysqlConfig : {
             host : '127.0.0.1'
-            ,user: 'deploymentUser' /// only has execution rights
-            ,password: 'deploymentUser'
+            ,user: 'apiUser' /// only has execution rights
+            ,password: '!javu10APIUs3r321!'
             ,database: productName
             , timezone: 'utc'
         }
@@ -86,10 +82,6 @@ var environments = {
         forgetPasswordSenderEmail: "support@javu.io",
         resetPasswordPage: "http://localhost:1348/resetPassword.html?tempAuthKey={authKey}",
         cypherKey : "91b7bd62-5959-46c3-9a96-bcfd0a0de372",
-        AWSConfig : {
-            accessKeyId: "AKIAIX7DGFH4Z3OWCT6A", secretAccessKey: "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",
-            region: "us-west-2", bucketUpload: 'dev-mc360'
-        },
         mongoDBServer: { connectionString: "mongodb://54.149.71.236:1333/" + productName }
     }
 };

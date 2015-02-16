@@ -1,4 +1,4 @@
-﻿var hash = require('mHash/hash.js');
+﻿var hash = require('./hash.js');
 var config = require('../config.js');
 var cryptr = require('cryptr');
 var tokenCryptr = new cryptr(config.cypherKey);

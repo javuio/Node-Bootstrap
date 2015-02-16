@@ -1,8 +1,9 @@
-﻿var config;
+﻿
 var wLogger = require('winston');
+var config = require('../config.js');
 
 wLogger.init = function (config) {
-    wLogger.setLevels({ debug: 0, info: 1, silly: 2, event: 3, warn: 4, error: 5, });
+    wLogger.setLevels({ debug: 0, info: 1, silly: 2, event: 3, warn: 4, error: 5 });
     wLogger.addColors({ debug: 'grey', info: 'cyan', silly: 'magenta', event:'green', warn: 'yellow', error: 'red' });
     wLogger.remove(wLogger.transports.Console);
     wLogger.add(wLogger.transports.Console, { level: 'silly', colorize: true });
@@ -25,6 +26,6 @@ wLogger.init = function (config) {
             });
         }
     }
-}
-
+};
+wLogger.init(config);
 module.exports = wLogger;

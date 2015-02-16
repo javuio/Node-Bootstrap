@@ -1,6 +1,6 @@
 ﻿var cryptUtils = require('../../utils/cryptUtils.js');
-var errorResponse = require('mError/errorResponse.js');
-var logger = require('mLogger/logger.js');
+var errorResponse = require('../errorResponse.js');
+var logger = require('../../utils//logger.js');
 var apiHandler = require('../apiHandler.js');
 var validator = require('../../utils/validator.js');
 var users = require('../../dao/users.js');
@@ -12,12 +12,12 @@ function createAPI(app) {
 
     handler.validateData = function (req, res) {
         return req.body && req.body.email && validator.isValidEmail(req.body.email) && req.body.password && req.body.devicePlatform && req.body.deviceToken;
-    }
+    };
 
 
     handler.securityCheck = function (req, res) {
         return true;
-    }
+    };
 
 
     handler.post = function (req, res) {
