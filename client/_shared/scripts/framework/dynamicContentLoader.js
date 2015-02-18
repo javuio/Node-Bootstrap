@@ -46,7 +46,7 @@ define( function () {
     
         PARAMS:
         configObj{
-            pageName: is a string that used to tag its resources to remove latter
+            pageName: is a string that is used to tag its resources to remove latter
             pageUrl: is the url where to find the page resource
             jsFiles: is an array of string urls where to find the needed js files
             cssFiles: is an array of string urls where to find the needed css files
@@ -61,7 +61,7 @@ define( function () {
         }
         /*
         Description:
-        injects contect from another page into a container 
+        injects content from another page into a container
     
         PARAMS:
         pageName: is a string that used to tag its resources to remove latter
@@ -114,7 +114,7 @@ define( function () {
 
                     }
                     else{
-                    //distroy old content resources
+                    //destroy old content resources
                     window.location.hash = t.currentHash;
 
                     t._loadCSSFiles(cssFiles);

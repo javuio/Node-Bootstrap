@@ -2,8 +2,8 @@
     if (console.log) console.log("document ready");
 
     require(['masterPageController', 'mainMenu', 'manifest','uiManager'], function (masterPageController, mainMenu, manifest,uiManager) {
-        var loginHandler = function(user){
 
+        var navigateToCurrentHash = function(){
             var newHash = window.location.hash.substring(1);
             newHash= newHash.replace('/','');
             if (newHash.length == 0 ){
@@ -12,8 +12,14 @@
             }
             masterPageController.load(newHash);
         };
+
+        var loginHandler = function(user){
+            navigateToCurrentHash();
+        };
+
+
         masterPageController.init({ loginHandler: loginHandler });
-        window.masterPageController = masterPageController;
+        navigateToCurrentHash();
 
         if (mainMenu)
             mainMenu.init({ pages: manifest.pages, dynamicLoader: manifest.dynamicLoader });

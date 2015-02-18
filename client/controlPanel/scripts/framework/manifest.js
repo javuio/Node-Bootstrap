@@ -14,6 +14,7 @@
             ,'404':{ pageTitle: 'Page not Found', pageUrl: '/pages/404/404.html'}
         }
         , load: function (configName, segments) {
+
             if(configName == '')
                 configName='dashboard';
 
@@ -29,6 +30,7 @@
 
     manifest.dynamicLoader = new dynamicContentLoader('dynamicContentContainer', manifest.pages);
 
+    /* Important fix pageName because thats what would be used in the tag*/
     for (var config in manifest.pages)
         if (manifest.pages[config].pageUrl)
             manifest.pages[config].pageName = config;

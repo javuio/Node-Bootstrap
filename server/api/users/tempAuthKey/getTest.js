@@ -1,8 +1,9 @@
 ﻿var chai = require('chai')
     , chaiHttp = require('chai-http');
 chai.use(chaiHttp);
-var tempAuthKeys = require('../../../dao/tempAuthKeys.js');
 
+var tempAuthKeys = require('../../../dao/tempAuthKeys.js');
+var errorResponse  = require('../../errorResponse.js');
 var apiUrl = '/api/users/tempAuthKey';
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
 
         tempAuthKeys.insertTempAuthKey(1, function (errAuthKey, resultAuthKey) {
             if (errAuthKey)
-                errorResponse.sendError(res, 500, errAuthKey);
+                throw errAuthKey;
             else if (resultAuthKey) {
                 //// test successful tempAuthKey
                 chai.request(app)
