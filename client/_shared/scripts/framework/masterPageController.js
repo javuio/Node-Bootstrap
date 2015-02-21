@@ -55,13 +55,14 @@ define('masterPageController', ['manifest', 'authManager','profileControl'], fun
         , _loginHandler: function (user) {
 
             /// when logged in figure out where to take the user
+            /*
             var segments = window.location.hash.substring(1).split('/');
             var hash = segments[0];
             segments = segments.splice(1);
 
             if (hash && this.subPagesManifest.pages[hash])
                 this.load(hash, segments.join("/"));
-            else
+            else*/
                 this.load('dashboard');
 
             require(['profileControl'], function (profileControl) {

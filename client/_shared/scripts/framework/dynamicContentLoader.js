@@ -84,6 +84,14 @@ define( function () {
         callback: is a function that is called when everything is loaded
         */
         , loadContent: function (pageName, pageUrl, jsFiles, cssFiles, segments, callback) {
+
+            /// eliminate accidental duplicate calls
+            if (this.lastPageLoaded == pageUrl) {
+                console.warn(pageName + " tried to load more than one time");
+                return;
+            }
+            else
+                this.lastPageLoaded = pageUrl;
             console.log('dynamically load',pageName,pageUrl);
 
             //destroy old content resources
