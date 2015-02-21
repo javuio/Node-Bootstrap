@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS users_select;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_select`(
+CREATE  PROCEDURE `users_select`(
 	_userId INT(11),
 	_userToken char(36),
 	_accessToken char(36),

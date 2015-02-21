@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS users_update_credentials;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_update_credentials`(
+CREATE  PROCEDURE `users_update_credentials`(
 	_username nvarchar(60), _password nvarchar(150),
 	_newUsername nvarchar(60), _newPassword nvarchar(150)
 )

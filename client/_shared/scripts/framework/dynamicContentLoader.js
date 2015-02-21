@@ -18,15 +18,28 @@ define( function () {
 
         ///when the hash tag changes load that content from configs    
         $(window).bind('hashchange', createHashHandler(this));
+        $(window).bind('load', createHashHandler(this));
     }
 
     function createHashHandler(t) {
+
+        var defaultConfig;
+        for(c in t.configs)
+        if(t.configs[c].defaultPage)
+            defaultConfig=t.configs[c];
+
         return function () {
             var newHash = window.location.hash.substring(1);
             newHash= newHash.replace('/','');
             if (t.currentHash != newHash && t.configs) {
                 var segements = newHash.split('/');
-                t.loadContentObj(t.configs[segements[0]], segements.splice(1));
+                var config;
+                if(segements[0]=="")
+                    config=defaultConfig;
+                else
+                    config=t.configs[segements[0]];
+
+                t.loadContentObj(config, segements.splice(1));
             }
         }
     }
@@ -37,12 +50,12 @@ define( function () {
             $('[dynamicContent=true]').remove();
             //close all dialogs
             //$(".ui-dialog-content").dialog("close");
-            $(".modal").modal('hide')
+            $(".modal").modal('hide');
             if (typeof (hideAlert) == "function") hideAlert();
         }
         /*
         Description:
-        injects contect from another page into a container 
+        injects content from another page into a container
     
         PARAMS:
         configObj{
@@ -99,7 +112,7 @@ define( function () {
 
             /// change url with hash so the the browser can keep history
 
-            this.currentHash = pageName;
+            this.currentHash = pageName.replace('/','');
             window.location.hash = pageName;
 
             //load new

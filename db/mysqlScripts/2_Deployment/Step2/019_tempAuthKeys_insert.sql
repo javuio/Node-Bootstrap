@@ -2,7 +2,7 @@
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tempAuthKeys_insert`(
+CREATE  PROCEDURE `tempAuthKeys_insert`(
 	_userId int(11))
 begin
 	declare _key varchar(36);

@@ -6,7 +6,7 @@ var users = require('../../../dao/users.js');
 function createAPI(app) {
     var handler = new apiHandler('/api/users/tempAuthKey/', './users/tempAuthKey/getTest.js'); // TODO: Disabled tempAuthKey test untill new tempAuthKey is implemented
 
-    handler.secure = false;
+    handler.requiresAuthentication = false;
 
     handler.validateData = function (req, res) {
         return req.query.tempAuthKey;

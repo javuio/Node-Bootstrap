@@ -6,26 +6,23 @@ var users = require( '../../../../dao/users.js' );
 function createAPI( app ) {
     var handler = new apiHandler( '/api/users/admins/updateUser/', './users/admins/updateUser/postTest.js' );
     handler.requiresPermission = 'AdminPortal';
-    handler.validateData = function ( req, res ) {
-        if ( req.body.email && req.body.firstName && req.body.lastName )
-            return true;
-    }
 
-    handler.securityCheck = function ( req, res ) {
-        return true;
-    }
+    handler.validateData = function ( req, res ) {
+        return req.body.email && req.body.firstName && req.body.lastName;
+    };
+
+
     handler.post = function ( req, res ) {
-        if ( handler.validateData( req, res ) ) {
 
             users.getUserByUsername( req.body.email, function ( err, user ) {
                 if ( err ) {
-                    return errorResponse.sendAuthenticationError( res, "error while retive user", err );
+                    return errorResponse.sendAuthenticationError( res, "error while retrieve user", err );
                 }
                 else if ( user == null ) {
                     errorResponse.sendAuthorizationError( res, "user not found", null );
                 }
                 else {
-                    users.updateUser( user.userToken, req.body.firstName, req.body.lastName, user.address, user.city, user.state, user.zip, user.isActive, user.userId, function ( err, updateCredentialsUser ) {
+                    users.updateUser( user, function ( err, updateCredentialsUser ) {
                         if ( err ) {
                             errorResponse.sendNotFoundError( res, "" );
                         }
@@ -49,9 +46,6 @@ function createAPI( app ) {
                 }
             });
 
-        }
-        else
-            errorResponse.sendValidationError( res, "Invalid Parameters" );
     };
 
     return handler;

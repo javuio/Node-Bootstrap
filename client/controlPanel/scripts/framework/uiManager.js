@@ -58,8 +58,19 @@ define('uiManager', function () {
                 $html.hide().removeClass('hidden').fadeIn('fast');
             return this;
         },
-        showSpinner: function () {
-           $("#div-loading:first").show();
+        showSpinner: function (message, ttl) {
+            if( typeof(message) != "string")
+                message = "please wait...";
+            var $loading = $("#div-loading:first");
+            $loading.html(message).show();
+            if(ttl) {
+                if(this.spinnerTimer) clearTimeout(this.spinnerTimer);
+
+                this.spinnerTimer = setTimeout(function () {
+                    $loading.hide();
+                }, ttl);
+            }
+
             return this;
         },
         hideSpinner: function () {
@@ -109,6 +120,11 @@ define('uiManager', function () {
                     },
                     'slow');
             });
+        },
+        reset: function(){
+            this.hideSpinner();
+            this.hideAlert();
+            return this;
         }
     };
 

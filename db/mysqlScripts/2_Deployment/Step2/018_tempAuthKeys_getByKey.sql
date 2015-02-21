@@ -2,7 +2,7 @@
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tempAuthKeys_validateKey`(
+CREATE  PROCEDURE `tempAuthKeys_validateKey`(
 	_key varchar(36))
 begin
 		select * from tempAuthKeys where `key`=_key and expiresOn > UTC_TIMESTAMP();

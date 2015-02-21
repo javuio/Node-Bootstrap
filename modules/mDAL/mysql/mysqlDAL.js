@@ -45,7 +45,7 @@ mysqlConn.prototype = {
                     err.errorCode = errorCode;
                 }
                 else {
-                    l.error('#Database -> Stored Procedure: ' + sql + ' an error has occurred while executing stored procedure :' + JSON.stringify(err));
+                    l.error('#Database -> Stored Procedure: ' + sql + ' an error has occurred while executing stored procedure :' , err);
                 }
                 
                 callback(err, null);
