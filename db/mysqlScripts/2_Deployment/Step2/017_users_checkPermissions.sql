@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS users_checkPermissions;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_checkPermissions`(
+CREATE  PROCEDURE `users_checkPermissions`(
 	  _permissionName VARCHAR(150),
 	  _userToken varchar(36),
 	  _userId int(11)

@@ -8,7 +8,7 @@ var tempAuthKeys = require( '../../../dao/tempAuthKeys.js' );
 function createAPI( app ) {
     var handler = new apiHandler( '/api/users/forgetPassword/', './users/forgetPassword/postTest.js' ); // TODO: Disabled forgetPassword test untill new forgetPassword is implemented
 
-    handler.secure = false;
+    handler.requiresAuthentication = false;
 
     handler.validateData = function ( req, res ) {
         return req.body.username != null;
@@ -36,11 +36,13 @@ function createAPI( app ) {
 
                                     ///implement mail client
                                     console.log ("implement mail client");
+                                    res.send(204);
 
                                 }
                                 else if ( config.module == "controlPanel" ) {
                                     ///implement mail client
                                     console.log ("implement mail client");
+                                    res.send(204);
 
                                 }
                                 else {

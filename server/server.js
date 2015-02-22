@@ -4,11 +4,13 @@ var config = require('./config.js');
 /// create http server //////////////////////////////////////////////////////
 var express = require('express');
 var http = require('http');
+
 var app = express();
-var bodyParser = require('body-parser');
 app.set('port', process.env.PORT || 3000);
-app.use(bodyParser.urlencoded({ extended: false }));
+
+var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /// create authentication strategy ///////////////////////////////////////////
 var passport = require('passport');
@@ -25,11 +27,13 @@ for (var i = 0 ; i < config.staticContent.length; i++)  {
 
 
 /// Register error handler /////////////////////////////////////////////////////////
-if(!config.debugMode) {
+if(true || !config.debugMode) {
+    require('longjohn'); // long stack trace
+    /*
     process.on('uncaughtException', function (err) {
         console.error('!!! Caught exception: ', err);
     });
-
+*/
     app.use(function error(err, req, res, next) {
         // log it
         console.error(err, req.method, req.originalUrl);

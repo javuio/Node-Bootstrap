@@ -18,8 +18,13 @@ function apiHandler(route, testPath) {
     //this.validRequestSchema = null;
     this.route = route;
     this.app = null;
+
+    /// requires a user to be logged in -- default true
+    this.requiresAuthentication = true;
+
+    /// requires a user to be logged in and has specific permissions
     this.requiresPermission = undefined;
-    this.secure = true;
+
 }
 
 apiHandler.prototype = {
@@ -48,7 +53,7 @@ apiHandler.prototype = {
                             res.send(500, err);
                         }
                         else if (result == null) {
-                            res.send(403, {"message": "You are not authorized", "code": "NoPermission"});
+                            errorResponse.sendAuthorizationError(res,"You are not authorized",{"message": "apiHandler: You are not authorized", "code": "NoPermission"});
                             console.log("You are not authorized");
                         }
                         else if (result == true) {
@@ -102,7 +107,7 @@ apiHandler.prototype = {
     
     , authenticate: function () {
         var _self = this;
-        if (this.secure) {
+        if (this.requiresAuthentication) {
             return function (req, res, next) {
                 passport.authenticate('token', { session: false }, function (err, user, info) {
                     if (err) {

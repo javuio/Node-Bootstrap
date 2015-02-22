@@ -8,7 +8,7 @@ var users = require('../../dao/users.js');
 function createAPI(app) {
     var handler = new apiHandler('/register/std', './register/stdTest.js');
     
-    handler.secure = false;
+    handler.requiresAuthentication = false;
 
     handler.validateData = function (req, res) {
         return req.body && req.body.email && validator.isValidEmail(req.body.email) && req.body.password && req.body.devicePlatform && req.body.deviceToken;

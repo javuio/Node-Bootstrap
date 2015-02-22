@@ -147,24 +147,24 @@ module.exports = {
         });
     }
 
-    , updateUser: function (userToken , firstName, lastName, address, city, state, zip, isActive, lastUpdatedBy, callback) {
+    , updateUser: function (user, callback) {
 
         var cmd = mysql.createCommand('users_update');
-        cmd.addParam("_userToken", userToken);
-        cmd.addParam("_firstName", firstName);
-        cmd.addParam("_lastName", lastName);
-        cmd.addParam("_address", address);
-        cmd.addParam("_city", city);
-        cmd.addParam("_state", state);
-        cmd.addParam("_zip", zip);
-        cmd.addParam("_isActive", isActive);
-        cmd.addParam("_lastUpdatedBy", lastUpdatedBy);
+        cmd.addParam("_userToken", user.userToken);
+        cmd.addParam("_firstName", user.firstName);
+        cmd.addParam("_lastName", user.lastName);
+        cmd.addParam("_address", user.address);
+        cmd.addParam("_city", user.city);
+        cmd.addParam("_state", user.state);
+        cmd.addParam("_zip", user.zip);
+        cmd.addParam("_isActive", user.isActive);
+        cmd.addParam("_lastUpdatedBy", user.lastUpdatedBy);
 
         cmd.getDataObject(function (err, data) {
             if (err)
                 callback(err);
             else
-                callback(null, data);
+                callback(null, user);
         });
     }
 }

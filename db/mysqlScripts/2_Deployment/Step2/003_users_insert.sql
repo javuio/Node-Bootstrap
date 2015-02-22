@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS users_insert;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_insert`(
+CREATE  PROCEDURE `users_insert`(
 	_username nvarchar(60), _password nvarchar(150), _loginMethod varchar(3),
 	_firstName nvarchar(150), _lastName nvarchar(150),
 	_address nvarchar(250), _city nvarchar(250), _state varchar(3), _zip varchar(15) , _roleName varchar(150)

@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS users_select_by_username;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_select_by_username`(
+CREATE  PROCEDURE `users_select_by_username`(
 	_username varchar(60),
 	_showDeleted bit,
 	_showActiveOnly bit

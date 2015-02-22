@@ -18,15 +18,28 @@ define( function () {
 
         ///when the hash tag changes load that content from configs    
         $(window).bind('hashchange', createHashHandler(this));
+        $(window).bind('load', createHashHandler(this));
     }
 
     function createHashHandler(t) {
+
+        var defaultConfig;
+        for(c in t.configs)
+        if(t.configs[c].defaultPage)
+            defaultConfig=t.configs[c];
+
         return function () {
             var newHash = window.location.hash.substring(1);
             newHash= newHash.replace('/','');
             if (t.currentHash != newHash && t.configs) {
                 var segements = newHash.split('/');
-                t.loadContentObj(t.configs[segements[0]], segements.splice(1));
+                var config;
+                if(segements[0]=="")
+                    config=defaultConfig;
+                else
+                    config=t.configs[segements[0]];
+
+                t.loadContentObj(config, segements.splice(1));
             }
         }
     }
@@ -37,16 +50,16 @@ define( function () {
             $('[dynamicContent=true]').remove();
             //close all dialogs
             //$(".ui-dialog-content").dialog("close");
-            $(".modal").modal('hide')
+            $(".modal").modal('hide');
             if (typeof (hideAlert) == "function") hideAlert();
         }
         /*
         Description:
-        injects contect from another page into a container 
+        injects content from another page into a container
     
         PARAMS:
         configObj{
-            pageName: is a string that used to tag its resources to remove latter
+            pageName: is a string that is used to tag its resources to remove latter
             pageUrl: is the url where to find the page resource
             jsFiles: is an array of string urls where to find the needed js files
             cssFiles: is an array of string urls where to find the needed css files
@@ -61,7 +74,7 @@ define( function () {
         }
         /*
         Description:
-        injects contect from another page into a container 
+        injects content from another page into a container
     
         PARAMS:
         pageName: is a string that used to tag its resources to remove latter
@@ -71,6 +84,14 @@ define( function () {
         callback: is a function that is called when everything is loaded
         */
         , loadContent: function (pageName, pageUrl, jsFiles, cssFiles, segments, callback) {
+
+            /// eliminate accidental duplicate calls
+            if (this.lastPageLoaded == pageUrl) {
+                console.warn(pageName + " tried to load more than one time");
+                return;
+            }
+            else
+                this.lastPageLoaded = pageUrl;
             console.log('dynamically load',pageName,pageUrl);
 
             //destroy old content resources
@@ -99,7 +120,7 @@ define( function () {
 
             /// change url with hash so the the browser can keep history
 
-            this.currentHash = pageName;
+            this.currentHash = pageName.replace('/','');
             window.location.hash = pageName;
 
             //load new
@@ -114,7 +135,7 @@ define( function () {
 
                     }
                     else{
-                    //distroy old content resources
+                    //destroy old content resources
                     window.location.hash = t.currentHash;
 
                     t._loadCSSFiles(cssFiles);

@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS  users_reset_password;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_reset_password`(
+CREATE  PROCEDURE `users_reset_password`(
 	_userId int(11),
 	_userToken char(36),
 	_password varchar(250)

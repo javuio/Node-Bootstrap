@@ -7,7 +7,7 @@ var errorResponse = require('../../errorResponse.js');
 function createAPI(app) {
     var handler = new apiHandler('/api/users/resetPassword/', './users/resetPassword/postTest.js'); // TODO: Disabled resetPassword test untill new resetPassword is implemented
 
-    handler.secure = false;
+    handler.requiresAuthentication = false;
 
     handler.validateData = function (req, res) {
         return req.body.tempAuthKey && req.body.userToken && req.body.password;

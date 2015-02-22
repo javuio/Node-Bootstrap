@@ -2,7 +2,7 @@
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tempAuthKeys_delete`(
+CREATE  PROCEDURE `tempAuthKeys_delete`(
 	_key varchar(36))
 begin
 	

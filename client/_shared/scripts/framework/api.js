@@ -36,7 +36,7 @@
             url = '/api' + url;
 
         if (currentUser) {
-            url += (url.indexOf('?') > 0 ? '&' : '?') + 'userToken=' + currentUser.userToken;
+            //url += (url.indexOf('?') > 0 ? '&' : '?') + 'userToken=' + currentUser.userToken;
             header = { auth: currentUser.auth, userToken: currentUser.userToken };
         }
 
@@ -61,8 +61,17 @@
                     api.authManager.logout();
                 }
                 else {
-                    e.code = e.status;
-                    e.message = e.responseText;
+
+                    if(e.responseJSON && e.responseJSON.code )
+                        e.code=e.responseJSON.code;
+                    else
+                        e.code = e.status;
+
+                    if(e.responseJSON && e.responseJSON.message )
+                        e.message = e.responseJSON.message;
+                    else
+                        e.message = e.responseText;
+
                     if (console.error) console.error(JSON.stringify(e));
                     if (callback)
                         callback(e);
@@ -74,13 +83,13 @@
             if (p) {
                 p.abort();
                 if (callback)
-                    callback({ code: 0, message: "timeout" });
+                    callback({ code: 0, message: "timeout waiting for " + url });
             }
         }, api.apiTimeout);
     }
     , accessDeniedHandle: function (err) {
     }
-}
+};
 
 api.turnLoggingOn(document.URL.indexOf('localhost') >= 0);
 

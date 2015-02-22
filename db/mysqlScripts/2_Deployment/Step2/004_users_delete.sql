@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS users_delete;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_delete`(
+CREATE  PROCEDURE `users_delete`(
 	_username nvarchar(60), _password nvarchar(150), _deletedBy int(11)
 )
 begin

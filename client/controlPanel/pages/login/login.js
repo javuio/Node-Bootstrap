@@ -18,6 +18,7 @@ define({
                 console.log('here');
                 if ($frm[0].checkValidity()) {
 
+                    /// will auto navigate to dashboard on its own
                     authManager.login($('#txtEmail:first').val()
                               , $('#txtPassword:first').val()
                               , function (err, result) {
@@ -26,10 +27,10 @@ define({
                                   else{
                                       uiManager.showSidebar();
                                       uiManager.showTopMenu();
-                                      masterPageController.load('dashboard');
 
                                   }
                               });
+                    return false;
                 }
             });
 

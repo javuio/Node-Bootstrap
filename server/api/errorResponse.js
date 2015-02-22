@@ -33,6 +33,7 @@ errorResponse.prototype = {
         if (this.debugMode) {
             responseBody.debug = debug;
         }
+
         res.send(responseCode, responseBody);
         
         //log the error

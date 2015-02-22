@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS userRoles_insert;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `userRoles_insert`(
+CREATE  PROCEDURE `userRoles_insert`(
 	  _userId int(11),
 	  _email varchar(160),
 	  _roleId int(11),

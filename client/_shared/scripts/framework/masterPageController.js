@@ -37,21 +37,6 @@ define('masterPageController', ['manifest', 'authManager','profileControl'], fun
             /// set the main dynamic controller container
             this.$dynamicContentContainer = $('#dynamicContentContainer:first');
 
-/*
-            /// check if user is logged in if so great if not go through log out process
-            if (authManager.isUserLoggedIn()) {
-                authManager.loginHandler(authManager.getCurrentUser());
-            }
-            else {
-                this._logOutHandler();
-            }
-*/
-
-            /// if a hash tag is already passed, use it
-            //this.load(window.location.hash.substring(1).replace("/",""));
-
-
-
             /// handle any access denied api reply with a kickout to login
             api.accessDeniedHandle = this._logOutHandler;
         }
@@ -70,17 +55,17 @@ define('masterPageController', ['manifest', 'authManager','profileControl'], fun
         , _loginHandler: function (user) {
 
             /// when logged in figure out where to take the user
+            /*
             var segments = window.location.hash.substring(1).split('/');
             var hash = segments[0];
             segments = segments.splice(1);
 
             if (hash && this.subPagesManifest.pages[hash])
                 this.load(hash, segments.join("/"));
-            else
+            else*/
                 this.load('dashboard');
-debugger;
+
             require(['profileControl'], function (profileControl) {
-                debugger;
                 profileControl.setUser(user);
             });
         }

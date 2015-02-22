@@ -1,80 +1,91 @@
-﻿
-define({
+﻿define({
     init: function () {
-        require(['uiManager', 'bootstrapValidator'], function (uiManager) {
-            uiManager.hideSpinner();
 
-            $('#changePasswordForm').bootstrapValidator({
-                // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                live: 'disabled',
-                fields: {
-                    txtOldPassword: {
-                        validators: {
-                            notEmpty: {
-                                message: 'required '
+        var user;
+        require(['authManager'], function (authManager) {
+            if (!authManager.isUserLoggedIn()) {
+                window.location.hash ='login';
+                return;
+            }
+
+            user = authManager.getCurrentUser();
+            $('#firstName:first').val(user.firstName);
+            $('#lastName:first').val(user.lastName);
+        });
+
+        function customCheck() {
+            var currentPassword = $('#currentPassword:first')[0];
+            var newPassword = $('#newPassword:first')[0];
+            var confirmPassword = $('#confirmPassword:first')[0];
+
+
+            if (newPassword.value && ! currentPassword.value)
+                currentPassword.setCustomValidity('Current Password is required.');
+            else
+                currentPassword.setCustomValidity('');
+
+            if (newPassword.value != confirmPassword.value)
+                confirmPassword.setCustomValidity('Confirmation does not match.');
+            else
+                confirmPassword.setCustomValidity('');
+
+            /// also trigger all the native html5 validations
+            return $("#changePasswordForm:first")[0].checkValidity();
+        }
+
+
+        $('#saveButton:first').click(function () {
+
+
+            if (customCheck()) {
+                require(['uiManager'], function (uiManager) {
+                    uiManager.showSpinner('saving', 2000);
+
+                    user.firstName = $('#firstName:first').val();
+                    user.lastName = $('#lastName:first').val();
+                    var currentPassword = $("#currentPassword:first").val();
+                    var newPassword = $('#newPassword:first').val();
+
+                    /*First update the user profile*/
+                    api.post('api/users/user/update', {user:user} /// updated based on user token not ID
+                        , function (err, user) {
+                            /*If all is well then check if password needs updating*/
+                            if (err) {
+                                uiManager.showAlert('warning', err.message);
+                                uiManager.hideSpinner();
+                                return;
                             }
-                        }
-                    },
-                    txtNewPassword: {
-                        validators: {
-                            notEmpty: {
-                                message: 'required'
-                            }, stringLength: {
-                                min: 6,
-                                message: 'Use at least 6 characters'
+                            else {
+
+                                var finalize = function(err,user){
+                                    uiManager.hideSpinner();
+                                    uiManager.showAlert('success', 'Your profile has been saved');
+                                    require(['authManager'], function (authManager) {
+                                        authManager.setCurrentUser(user);
+                                    });
+                                };
+
+                                if (newPassword && newPassword != currentPassword) {
+                                    api.post('api/users/changePassword', {
+                                        currentPassword: currentPassword,
+                                        newPassword: newPassword.value
+                                    }, finalize);
+                                }
+                                else
+                                    finalize(null,user);
                             }
-                        }
-                    },
-                    txtConfirmPassword: {
-                        validators: {
-                            notEmpty: {
-                                message: 'required'
-                            },
-                            identical: {
-                                field: 'txtNewPassword',
-                                message: 'The confirm password should be the same as password '
-                            }
-                        }
-                    }
-                }
-            });
+
+                        });
 
 
-            $("#input").keypress(function (event) {
-                if (event.which == 13) {
-                    event.preventDefault();
-                    $('#btnChangePassword:first').trigger("click");
-                }
-            });
+                });
+                /// to stop the submit button from redirecting the location
+                return false;
+            }
 
 
-            $('#btnChangePassword:first').click(function () {
-                $("#changePasswordForm").data('bootstrapValidator').resetForm();
-                if ($('#changePasswordForm').data('bootstrapValidator').validate().isValid()) {
-                    uiManager.showSpinner();
-                    api.post('api/users/changePassword', {
-                        currentPassword: $("#txtOldPassword").val(),
-                        newPassword: $("#txtNewPassword").val()
-                    }, function (err, result) {
-                        uiManager.hideSpinner();
-                        if (err)
-                            showAlert('warning', err.message);
-                        else {
-                            showAlert('success', 'Operation done successfully');
-
-                            require(['authManager'], function (authManager) {
-                                authManager.setCurrentUser(result);
-                            });
-                        }
-                    });
-
-                }
-            });
         });
     }
 });
+
+

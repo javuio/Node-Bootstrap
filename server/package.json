@@ -1,11 +1,11 @@
 {
   "name": "javu",
   "version": "0.0.0",
-  "description": "bolier plate web application template build on popular frameworks",
+  "description": "javu.io bolier plate web application template build on popular frameworks",
   "main": "server.js",
   "author": {
     "name": "Daniel Hindi",
-    "email": "daniel@madaincorp.com"
+    "email": "support@javu.io"
   },
   "dependencies": {
     "chai": "^1.9.1",
@@ -19,6 +19,7 @@
 	"cryptr": "1.0.*",
     "node-uuid":"1.4.*",
     "winston": "0.8.3",
-    "winston-loggly" : "1.0.2"
+    "winston-loggly" : "1.0.2",
+    "longjohn":"0.2.*"
   }
 }

@@ -1,11 +1,7 @@
 ﻿define('authManager', function () {
     return {
-        /*
-         Keeps state of logged in user and caches login token in a cookie for 3 hours
-         singleton
-         */
+
         _currentUser: null
-        , _tmrCheckSession: null
         , attemptAutoLogin: function () {
             var user = this.getCurrentUser();
             if(user)
