@@ -1,9 +1,11 @@
 ﻿
 define({
     init: function () {
+        debugger;
         ///fix ui
         require(['uiManager'], function (uiManager) {
-            uiManager.disableMenu().hideSidebar().hideSpinner().hideTopMenu().setPageTitle('Register');
+           debugger;
+            uiManager.hideSidebar().hideTopMenu();
         });
 
         ///if dev dont actually pay
@@ -15,7 +17,8 @@ define({
             $('#hosted_button_id:first').val('WFL3GV5H3ZLT2');
         }
          */
-        $('#frmRegistrationForm:first')[0].action =action;
+        var frm = $('#frmRegistrationForm:first')[0];
+        frm.action =action;
 
 
         $('#btnRegister:first').click(function () {
@@ -37,7 +40,7 @@ define({
 
 
 
-            if ($('#frmRegistrationForm:first')[0].checkValidity()) {
+            if (frm.checkValidity()) {
 
                 api.post('/api/user'
                 , { username: email, password: password }
@@ -49,18 +52,20 @@ define({
                         return false;
                     }
                     else {
-                        require(['authManager','masterPageController']   
-                        , function (authManager, masterPageController) {
+                        require(['authManager']
+                        , function (authManager) {
 
                             authManager.login(email
                                ,password
                                , function (err, result) {
                                     if (err) {
-                                        showAlert('warning', err.message);
+                                        require(['uiManager'],function (uiManager){
+                                            uiManager.showAlert('warning', err.message);
+                                        });
                                         return false;
                                     }
                                     else {
-                                        $('#frmRegistrationForm:first')[0].submit();
+                                        frm.submit();
                                     }
                                }
                                );

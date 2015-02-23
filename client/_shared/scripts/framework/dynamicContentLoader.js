@@ -1,11 +1,11 @@
-﻿
-///requires jquery, jquery.ba-hashchange (to bind to hashchange)
-define( function () {
-    function dynamicContentLoader(dynamicContentContainerID, configs) {
+﻿///requires jquery, jquery.ba-hashchange (to bind to hashchange)
+define(function () {
+    function dynamicContentLoader(dynamicContentContainerID, pageTitleID, configs) {
         this.$dynamicContentContainer = $('#' + dynamicContentContainerID + ':first');
         if (this.$dynamicContentContainer.length == 0 && console.log)
             console.log('dynamicContentLoader couldnt find the container ' + dynamicContentContainerID);
 
+        this.$pageTitle = $('#' + pageTitleID + ':first');
 
         this.configs = configs;
         this.callbacks = [];
@@ -24,20 +24,20 @@ define( function () {
     function createHashHandler(t) {
 
         var defaultConfig;
-        for(c in t.configs)
-        if(t.configs[c].defaultPage)
-            defaultConfig=t.configs[c];
+        for (c in t.configs)
+            if (t.configs[c].defaultPage)
+                defaultConfig = t.configs[c];
 
         return function () {
             var newHash = window.location.hash.substring(1);
-            newHash= newHash.replace('/','');
+            newHash = newHash.replace('/', '');
             if (t.currentHash != newHash && t.configs) {
                 var segements = newHash.split('/');
                 var config;
-                if(segements[0]=="")
-                    config=defaultConfig;
+                if (segements[0] == "")
+                    config = defaultConfig;
                 else
-                    config=t.configs[segements[0]];
+                    config = t.configs[segements[0]];
 
                 t.loadContentObj(config, segements.splice(1));
             }
@@ -54,35 +54,37 @@ define( function () {
             if (typeof (hideAlert) == "function") hideAlert();
         }
         /*
-        Description:
-        injects content from another page into a container
-    
-        PARAMS:
-        configObj{
-            pageName: is a string that is used to tag its resources to remove latter
-            pageUrl: is the url where to find the page resource
-            jsFiles: is an array of string urls where to find the needed js files
-            cssFiles: is an array of string urls where to find the needed css files
-            callback: is a function that is called when everything is loaded
-        }
-        */
+         Description:
+         injects content from another page into a container
+
+         PARAMS:
+         configObj{
+         pageName: is a string that is used to tag its resources to remove latter
+         pageUrl: is the url where to find the page resource
+         jsFiles: is an array of string urls where to find the needed js files
+         cssFiles: is an array of string urls where to find the needed css files
+         callback: is a function that is called when everything is loaded
+         }
+         */
         , loadContentObj: function (configObj, segments) {
-            if (!configObj) {  return; }
+            if (!configObj) {
+                return;
+            }
             if (typeof (configObj) == "string")
                 configObj = this.configs[configObj];
             this.loadContent(configObj.pageName, configObj.pageUrl, configObj.jsFiles, configObj.cssFiles, segments, configObj.callback);
         }
         /*
-        Description:
-        injects content from another page into a container
-    
-        PARAMS:
-        pageName: is a string that used to tag its resources to remove latter
-        pageUrl: is the url where to find the page resource
-        jsFiles: is an array of string urls where to find the needed js files
-        cssFiles: is an array of string urls where to find the needed css files
-        callback: is a function that is called when everything is loaded
-        */
+         Description:
+         injects content from another page into a container
+
+         PARAMS:
+         pageName: is a string that used to tag its resources to remove latter
+         pageUrl: is the url where to find the page resource
+         jsFiles: is an array of string urls where to find the needed js files
+         cssFiles: is an array of string urls where to find the needed css files
+         callback: is a function that is called when everything is loaded
+         */
         , loadContent: function (pageName, pageUrl, jsFiles, cssFiles, segments, callback) {
 
             /// eliminate accidental duplicate calls
@@ -92,7 +94,7 @@ define( function () {
             }
             else
                 this.lastPageLoaded = pageUrl;
-            console.log('dynamically load',pageName,pageUrl);
+            console.log('dynamically load', pageName, pageUrl);
 
             //destroy old content resources
             this.clear();
@@ -120,7 +122,7 @@ define( function () {
 
             /// change url with hash so the the browser can keep history
 
-            this.currentHash = pageName.replace('/','');
+            this.currentHash = pageName.replace('/', '');
             window.location.hash = pageName;
 
             //load new
@@ -128,20 +130,21 @@ define( function () {
             var t = this;
             this.$dynamicContentContainer.hide().load(pageUrl //+ " #guts"
                 , function (response, status, xhr) {
-                    if ( status == "error" ) {
+                    if (status == "error") {
                         debugger;
-                        console.error("error loading " + pageUrl +" " + xhr.status + " " + xhr.statusText );
+                        console.error("error loading " + pageUrl + " " + xhr.status + " " + xhr.statusText);
                         window.location.hash = xhr.status;
 
                     }
-                    else{
-                    //destroy old content resources
-                    window.location.hash = t.currentHash;
+                    else {
+                        //destroy old content resources
+                        window.location.hash = t.currentHash;
 
-                    t._loadCSSFiles(cssFiles);
-                    t._loadJSFiles(jsFiles);
-                    t.$dynamicContentContainer.fadeIn();
-                    if (typeof (callback) == 'function') callback(segments && segments.length > 0 ? segments.split('/') : []);
+                        t._loadCSSFiles(cssFiles);
+                        t._loadJSFiles(jsFiles);
+                        t.$dynamicContentContainer.fadeIn();
+                        t.$pageTitle.html(pageName.replace('/', ''));
+                        if (typeof (callback) == 'function') callback(segments && segments.length > 0 ? segments.split('/') : []);
                     }
                 }
             );
@@ -162,7 +165,7 @@ define( function () {
             if (jsFiles == undefined || jsFiles == null || jsFiles.length == 0) return;
             if (typeof (jsFiles) == "string") jsFiles = [jsFiles];
 
-            for (var i = 0; i < jsFiles.length ; i++)
+            for (var i = 0; i < jsFiles.length; i++)
                 this._loadFileSync(jsFiles[i], 'js');
         }
         /// loop and load all css Files
@@ -171,7 +174,7 @@ define( function () {
 
             if (typeof (cssFiles) == "string") cssFiles = [cssFiles];
 
-            for (var i = 0; i < cssFiles.length ; i++)
+            for (var i = 0; i < cssFiles.length; i++)
                 this._loadFileASync(cssFiles[i], 'css');
 
         }
@@ -233,16 +236,16 @@ define( function () {
 
         }
         /// get XMLHttpRequest object for sync load
-         , _getXHR: function () {
-             var xmlhttp;
-             if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                 xmlhttp = new XMLHttpRequest();
-             }
-             else {// code for IE6, IE5
-                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-             }
-             return xmlhttp;
-         }
+        , _getXHR: function () {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }
     };
 
 

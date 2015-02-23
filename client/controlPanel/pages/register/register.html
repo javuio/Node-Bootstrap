@@ -1,0 +1,37 @@
+﻿
+
+<section class="panel" style="max-width:800px;margin:auto; margin-top: 50px;">
+    <header class="panel-heading">
+        Register
+    </header>
+    <div class="panel-body">
+        <div id="alert"></div>
+        <form id="frmRegistrationForm" role="form" method="post" target="_top">
+            <div class="form-group">
+                <label>email</label>
+                <input type="email" class="form-control" id="txtEmail" placeholder="email" required />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="txtPassword" placeholder="password" required />
+                <input type="password" class="form-control" id="txtConfirm" placeholder="confirm" required />
+            </div>
+
+            <div class="form-group">
+                <label>Payment Options</label>
+                <select name="subscription" class="form-control">
+                    <option value="Trail">Trail : $0.00 USD - 30 day</option>
+                    <option value="Monthly">Monthly : $9.99 USD - monthly</option>
+                    <option value="Annually">Annually : $99.99 USD - yearly</option>
+                </select>
+            </div>
+
+            <button id="btnRegister" type="submit" class="btn btn-primary" >Subscribe</button>
+
+        </form>
+    </div>
+
+</section>
+<script>
+    require(['register'], function (p) { p.init(); });
+</script>

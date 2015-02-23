@@ -5,14 +5,10 @@
 
         , pages: {
             register: {pageUrl: '/pages/register/register.html'}
-            ,
-            login: {externalPage: true, pageTitle: 'Login', pageUrl: '/pages/login/login.html'}
-            ,
-            forgetPassword: {pageTitle: 'Forget Password', pageUrl: '/pages/forgetPassword/forgetPassword.html'}
-            ,
-            resetPassword: {pageTitle: 'Reset Password', pageUrl: '/resetPassword.html'}
-            ,
-            dashboard: {
+            , login: {externalPage: true, pageTitle: 'Login', pageUrl: '/pages/login/login.html'}
+            , forgetPassword: {pageTitle: 'Forget Password', pageUrl: '/pages/forgetPassword/forgetPassword.html'}
+            , resetPassword: {pageTitle: 'Reset Password', pageUrl: '/resetPassword.html'}
+            , dashboard: {
                 defaultPage: true,
                 mainMenuLabel: 'Dashboard',
                 pageTitle: 'Dashboard',
@@ -20,18 +16,15 @@
                 menuId: 'menuDashboard',
                 pageUrl: '/pages/dashboard/dashboard.html'
             }
-            ,
-            settings: {
+            , settings: {
                 mainMenuLabel: 'Settings',
                 pageTitle: 'Settings',
                 className: 'mnuSettings',
                 menuId: 'menuSettings',
                 pageUrl: '/pages/settings/settings.html'
             }
-            ,
-            profile: {pageTitle: 'profile', pageUrl: '/pages/profile/profile.html'}
-            ,
-            '404': {pageTitle: 'Page not Found', pageUrl: '/pages/404/404.html'}
+            , profile: {pageTitle: 'profile', pageUrl: '/pages/profile/profile.html'}
+            , '404': {pageTitle: 'Page not Found', pageUrl: '/pages/404/404.html'}
         }
         , load: function (configName, segments) {
 
@@ -48,7 +41,7 @@
         }
     };
 
-    manifest.dynamicLoader = new dynamicContentLoader('dynamicContentContainer', manifest.pages);
+    manifest.dynamicLoader = new dynamicContentLoader('dynamicContentContainer', 'pageTitle', manifest.pages);
 
     /* Important fix pageName because thats what would be used in the tag*/
     for (var config in manifest.pages) {
