@@ -8,7 +8,7 @@ wLogger.init = function (config) {
     wLogger.remove(wLogger.transports.Console);
     wLogger.add(wLogger.transports.Console, { level: 'silly', colorize: true });
     wLogger.add(wLogger.transports.File, { filename: '../node.log', maxsize: 1000, maxFiles: 3 });
-    
+    /*
     if (config.enableRemoteLogging) {
         if (!config.loggly || !config.loggly.subdomain ||
             !config.loggly.inputToken || !config.loggly.username || !config.loggly.password) {
@@ -26,6 +26,7 @@ wLogger.init = function (config) {
             });
         }
     }
+    */
 };
 wLogger.init(config);
 module.exports = wLogger;

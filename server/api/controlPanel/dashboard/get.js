@@ -30,7 +30,7 @@ function createAPI(app) {
                 ,{createdOn: new Date()-1,createdBy:"User 2",event:"Ran a test run"}
                 ,{createdOn: new Date(),createdBy:"User 3",event:"ready to start coding"}
             ]
-        }
+        };
         res.json(mockData);
     };
 

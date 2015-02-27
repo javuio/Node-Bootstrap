@@ -8,9 +8,7 @@ define({
                 return;
             }
 
-
             uiManager.hideSidebar().hideTopMenu();
-
 
             var $frm =$('#frmLogin:first');
             $('#btnLogin:first').click(function () {

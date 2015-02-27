@@ -73,6 +73,6 @@ errorResponse.prototype = {
         }
         return code;
     }
-}
+};
 
 module.exports = new errorResponse();

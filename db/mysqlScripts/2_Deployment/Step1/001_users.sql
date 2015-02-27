@@ -6,10 +6,6 @@ CREATE TABLE IF NOT EXISTS users (
   isActive bit(1) DEFAULT b'1',
   firstName nvarchar(150) DEFAULT NULL,
   lastName nvarchar(150) DEFAULT NULL,
-  address nvarchar(250) DEFAULT NULL,
-  city nvarchar(150) DEFAULT NULL,
-  state varchar(3) DEFAULT NULL,
-  zip varchar(15) DEFAULT NULL,
   userToken char(36) NOT NULL,
   accessToken char(36) NOT NULL,
   lastUpdatedOn datetime ,
@@ -45,14 +41,14 @@ CALL add_column() $$
 DELIMITER ;
 
 
-insert ignore into users (username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('fb@javu.io', null, 'fb', 'FaceBook', 'user', null, null, null, null, '11111111-1111-1111-1111-111111111111', '00000000-0000-0000-0000-000000000000', UTC_TIMESTAMP());
+insert ignore into users (username, password, loginMethod, firstName, lastName,  userToken, accessToken, createdOn)
+values	('fb@javu.io', null, 'fb', 'FaceBook', 'user',  '11111111-1111-1111-1111-111111111111', '00000000-0000-0000-0000-000000000000', UTC_TIMESTAMP());
 
-insert ignore into users (username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('CommonUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'Common', 'User', null, null, null, null, UUID(), UUID(), UTC_TIMESTAMP());
+insert ignore into users (username, password, loginMethod, firstName, lastName,  userToken, accessToken, createdOn)
+values	('CommonUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'Common', 'User',  UUID(), UUID(), UTC_TIMESTAMP());
 
-insert ignore into users (username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('CPUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'CP', 'User', null, null, null, null, UUID(), UUID(),UTC_TIMESTAMP());
+insert ignore into users (username, password, loginMethod, firstName, lastName,  userToken, accessToken, createdOn)
+values	('CPUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'CP', 'User', UUID(), UUID(),UTC_TIMESTAMP());
 
-insert ignore into users(username, password, loginMethod, firstName, lastName, address, city, state, zip, userToken, accessToken, createdOn)
-values	('AdminUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'Admin', 'User', null, null, null, null, UUID(), UUID(),UTC_TIMESTAMP());
+insert ignore into users(username, password, loginMethod, firstName, lastName,  userToken, accessToken, createdOn)
+values	('AdminUser@javu.io', 'ecb6e2bdc7977e013b5c7c06c3406635', 'std', 'Admin', 'User', UUID(), UUID(),UTC_TIMESTAMP());

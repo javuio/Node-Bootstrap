@@ -48,26 +48,12 @@ define('masterPageController', ['manifest', 'authManager','profileControl'], fun
             /// load the login page
             this.load('login');
             /// clear the profile control in the top right side of the page
-            require(['profileControl'], function (profileControl) {
-                profileControl.clear();
-            });
+            profileControl.clear();
+
         }
         , _loginHandler: function (user) {
 
-            /// when logged in figure out where to take the user
-            /*
-            var segments = window.location.hash.substring(1).split('/');
-            var hash = segments[0];
-            segments = segments.splice(1);
-
-            if (hash && this.subPagesManifest.pages[hash])
-                this.load(hash, segments.join("/"));
-            else*/
-                this.load('dashboard');
-
-            require(['profileControl'], function (profileControl) {
-                profileControl.setUser(user);
-            });
+            this.load('dashboard');
         }
         , kickOutIfNotLoggedIn: function () {
             if (!authManager.isUserLoggedIn()) {

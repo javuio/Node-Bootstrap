@@ -3,7 +3,7 @@ var chaiHttp = require('chai-http');
 var apiTestHelper = require('../apiTestHelper.js');
 chai.use(chaiHttp);
 
-var apiUrl = '/api/login/std';
+var apiUrl = '/api/login';
 
 module.exports = {
     test: function (app) {

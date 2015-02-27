@@ -10,9 +10,9 @@ CREATE  PROCEDURE `users_select_by_username`(
 BEGIN
 	
 	select  userId, username, loginMethod, isActive, firstName, lastName,
-	address, city, state, zip, userToken, lastUpdatedOn, lastUpdatedBy, createdOn, createdBy, deletedOn, deletedBy
+	userToken, lastUpdatedOn, lastUpdatedBy, createdOn, createdBy, deletedOn, deletedBy
 	from users where
     (username = _username) and
 		(_showDeleted = 1 or deletedOn is null) and
 		(_showActiveOnly = 0 or isActive = 1);
-END
+END$$

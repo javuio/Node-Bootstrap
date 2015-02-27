@@ -17,7 +17,7 @@ define({
                             uiManager.showAlert('success', 'Please check your email to reset your password');
                     });
                 }
-
+                return false;
             });
 
             $('#btnBack:first').click(function () {

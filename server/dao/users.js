@@ -25,15 +25,15 @@ module.exports = {
     getUserById: function (userId, password, callback) {
         
         var cmd = mysql.createCommand('users_select');
-        cmd.addParam("_userid", userId);
+        cmd.addParam("_userId", userId);
         cmd.addParam("_username", null);
         cmd.addParam("_password", null);
         
         cmd.getDataObject(function (err, data) {
             if (err)
-                callback(err)
+                callback(err);
             else if (data)
-                callback(null, data)
+                callback(null, data);
             else
                 callback(new Error("Invalid Username or Password"));
         });
@@ -43,7 +43,7 @@ module.exports = {
         var cmd = mysql.createCommand('users_select_all');
         cmd.getDataSet(function (err, data) {
             if (err)
-                callback(err)
+                callback(err);
             else if (data)
                 callback(null, data)
            
@@ -51,28 +51,23 @@ module.exports = {
     }
     
     ,registerUser: function (user, loginMethod, callback) {
-        
+
+        if(!(user.username && user.password))
+            throw "username and password are required to register";
         var cmd = mysql.createCommand('users_insert');
         cmd.addParam("_username", user.username);
         cmd.addParam("_password", cryptUtils.hashStdPassword(user.password));
         cmd.addParam("_loginMethod", loginMethod);
-        cmd.addParam("_firstName", null);
-        cmd.addParam("_lastName", null);
-        cmd.addParam("_address", null);
-        cmd.addParam("_city", null);
-        cmd.addParam("_state", null);
-        cmd.addParam("_zip", null);
+        cmd.addParam("_firstName", user.firstName);
+        cmd.addParam("_lastName", user.lastName);
+
         cmd.addParam("_roleName", user.roleName);
         
         cmd.getDataObject(function (err, data) {
             if (err)
                 callback(err);
-            else if (data)
+            else
                 callback(null, data);
-            else {
-                /// when mysql throws an error it will 
-                /// send signal and then return null
-            }
         });
     }
     ,getUserByUsername: function (username, callback) {

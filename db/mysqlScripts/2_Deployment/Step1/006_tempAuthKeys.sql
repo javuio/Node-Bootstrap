@@ -5,5 +5,5 @@
   createdOn timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   expiresOn datetime NOT NULL,
   PRIMARY KEY (`key`),
-  CONSTRAINT `fk_tempAuthKey_userId_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_tempAuthKey_userId_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

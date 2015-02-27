@@ -27,7 +27,7 @@ for (var i = 0 ; i < config.staticContent.length; i++)  {
 
 
 /// Register error handler /////////////////////////////////////////////////////////
-if(true || !config.debugMode) {
+if(!config.debugMode) {
     require('longjohn'); // long stack trace
     /*
     process.on('uncaughtException', function (err) {

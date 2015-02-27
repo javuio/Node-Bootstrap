@@ -3,7 +3,7 @@ var chaiHttp = require('chai-http');
 var apiTestHelper = require('../apiTestHelper.js');
 chai.use(chaiHttp);
 
-var apiUrl = '/api/register/std';
+var apiUrl = '/api/register';
 
 module.exports = {
     test: function (app) {
@@ -25,7 +25,7 @@ module.exports = {
         .res(function (res) {
             chai.assert.equal(res.status, 400);
             chai.expect(res).to.be.json;
-            chai.assert.equal(res.body.code, "badPassword");
+            chai.assert.equal(res.body.code, "duplicateUsername");
         });
         
 /*

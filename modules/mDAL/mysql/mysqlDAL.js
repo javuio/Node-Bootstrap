@@ -39,15 +39,19 @@ mysqlConn.prototype = {
         //Execute stored procedure call
         this.connectionPool.query(sql, function (err, rows, fields) {
             if (err) {
-                if (err.code == 'ER_SIGNAL_EXCEPTION' && err.sqlState == '45000' && err.message) {
-                    var errorCode = err.message.replace('ER_SIGNAL_EXCEPTION: ', '');
-                    l.warn('#Database -> Stored Procedure: ' + sql + ' Error code ##' + errorCode + '## was recieved while executing stored procedure :' + JSON.stringify(err));
-                    err.errorCode = errorCode;
+                try {
+                    if (err.code == 'ER_SIGNAL_EXCEPTION' && err.sqlState == '45000' && err.message) {
+                        var errorCode = err.message.replace('ER_SIGNAL_EXCEPTION: ', '');
+                        l.warn('#Database -> Stored Procedure: ' + sql + ' Error code ##' + errorCode + '## was relieved while executing stored procedure :' ,err);
+                        err.errorCode = errorCode;
+                    }
+                    else {
+                        l.error('#Database -> Stored Procedure: ' + sql + ' an error has occurred while executing stored procedure :', err);
+                    }
                 }
-                else {
-                    l.error('#Database -> Stored Procedure: ' + sql + ' an error has occurred while executing stored procedure :' , err);
+                catch(e) {
+                    console.error(e);
                 }
-                
                 callback(err, null);
             }
             else {

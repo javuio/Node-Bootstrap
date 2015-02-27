@@ -15,7 +15,7 @@ CREATE  PROCEDURE `users_select`(
 BEGIN
 	set @selectedUserId = null;
 	select @selectedUserId :=  userId as userId, username, loginMethod, isActive, firstName, lastName,
-	address, city, state, zip, userToken, lastUpdatedOn, lastUpdatedBy, createdOn, createdBy, deletedOn, deletedBy,
+		userToken, lastUpdatedOn, lastUpdatedBy, createdOn, createdBy, deletedOn, deletedBy,
 	case 
 		when (_password is null) then null
 		when (_password is not null)  then accessToken

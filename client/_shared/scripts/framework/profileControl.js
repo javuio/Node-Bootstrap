@@ -4,7 +4,7 @@
             setUser: function (user) {
                 if (user) {
                     $('#currentUserName:first').text(user.firstName);
-
+                    $('ddlUserProfile:first').show();
                     $('#profileLogout:first').click(
                        function () {
                            require(['authManager'], function (authManager) {
@@ -16,7 +16,7 @@
 
                 }
                 else {
-                    $('ddlUserProfile').hide();
+                    $('ddlUserProfile:first').hide();
                 }
 
             }

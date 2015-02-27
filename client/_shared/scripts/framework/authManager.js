@@ -57,7 +57,7 @@
     ,
     login: function (email, password, callback) {
         var t = this;
-        api.post('/login/std', {email: email, password: password}
+        api.post('/login', {email: email, password: password}
             , function (err, result) {
                 if (err)
                     callback(err);
