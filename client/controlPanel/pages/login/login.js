@@ -9,6 +9,12 @@ define({
             }
 
             uiManager.hideSidebar().hideTopMenu();
+            if(window.localStorage){
+                var userName = window.localStorage.getItem("userName");
+                if(userName)
+                    $('#chkRememberMe:first').val(userName);
+            }
+
 
             var $frm =$('#frmLogin:first');
             $('#btnLogin:first').click(function () {
@@ -24,7 +30,7 @@ define({
                                   else{
                                       uiManager.showSidebar();
                                       uiManager.showTopMenu();
-
+                                      window.localStorage.setItem("userName",$('#chkRememberMe:first').val());
                                   }
                               });
                     return false;

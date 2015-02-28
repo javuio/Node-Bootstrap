@@ -1,23 +1,26 @@
 ﻿<div class="login-body">
     <form id="frmLogin" class="form-signin panel">
-         <header class="panel-heading">
-               SIGN IN
-            </header>
+        <header class="panel-heading">
+            SIGN IN
+        </header>
         <div class="login-wrap">
-            <img class="logo-img" src="images/badge.png" alt="javu" />
+            <img class="logo-img" src="images/badge.png" alt="javu"/>
+
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="email" value="CPUser@javu.io" required autofocus maxlength="100">
+                <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="email"
+                       value="CPUser@javu.io" required autofocus maxlength="100">
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="password" required value="123456" maxlength="40">
+                <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="password"
+                       required value="123456" maxlength="40">
             </div>
             <div class="form-group">
 
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> Remember me
+                        <input id="chkRememberMe" type="checkbox"> Remember me
                     </label>
                     <span class="pull-right" class="form-control">
                     <a id="forgetPassword" data-toggle="modal" href="#"> Forgot Password?</a>
@@ -25,14 +28,16 @@
                 </div>
 
             </div>
-            <button id="btnLogin" class="btn btn-primary" type="submit" >Sign in</button>
+            <button id="btnLogin" class="btn btn-primary" type="submit">Sign in</button>
         </div>
     </form>
 
 
     <script>
         $(document).ready(function () {
-            require(['pages/login/login'], function (p) { p.init(); });
+            require(['pages/login/login'], function (p) {
+                p.init();
+            });
         });
     </script>
 </div>

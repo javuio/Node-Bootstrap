@@ -16,12 +16,11 @@
                 menuId: 'menuDashboard',
                 pageUrl: '/pages/dashboard/dashboard.html'
             }
-            , settings: {
-                mainMenuLabel: 'Settings',
-                pageTitle: 'Settings',
-                className: 'mnuSettings',
-                menuId: 'menuSettings',
-                pageUrl: '/pages/settings/settings.html'
+            , page1: {
+                mainMenuLabel: 'Page 1',
+                pageTitle: 'Page 1',
+                menuId: 'mnuPage1',
+                pageUrl: '/pages/page1/page1.html'
             }
             , profile: {pageTitle: 'profile', pageUrl: '/pages/profile/profile.html'}
             , '404': {pageTitle: 'Page not Found', pageUrl: '/pages/404/404.html'}
