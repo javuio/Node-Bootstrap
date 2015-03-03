@@ -1,6 +1,18 @@
-﻿$(document).ready(function () {
-    if (console.log) console.log("document ready");
+﻿//$(document).ready(function () {
 
+
+$javuApp.config(function($routeProvider){
+    $routeProvider
+        .when('/',{
+            templateUrl:'/pages/dashboard/dashboardPage.html'
+            ,controller:'/pages/dashboard/dashboardCtrl.js'
+        })
+        .otherwise({redirectTo:'/'});
+});
+
+
+
+/*
     require(['masterPageController', 'mainMenu', 'manifest','uiManager'], function (masterPageController, mainMenu, manifest,uiManager) {
 
         masterPageController.init();
@@ -14,6 +26,5 @@
         uiManager.showBody();
         uiManager.hideSpinner();
     });
-});
-
-if (console.log) console.log("index.js loaded");
+    */
+//});
