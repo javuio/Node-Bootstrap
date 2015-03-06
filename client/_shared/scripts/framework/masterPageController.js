@@ -52,8 +52,11 @@ define('masterPageController', ['manifest', 'authManager','profileControl'], fun
 
         }
         , _loginHandler: function (user) {
+            var hash = window.location.hash.replace('#','').split('/')[0];
+            if(hash == '' || hash == 'login')
+                hash= 'dashboard';
 
-            this.load('dashboard');
+            this.load(hash);
         }
         , kickOutIfNotLoggedIn: function () {
             if (!authManager.isUserLoggedIn()) {

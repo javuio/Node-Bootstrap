@@ -17,41 +17,42 @@ define(function () {
         this.currentHash;
 
         ///when the hash tag changes load that content from configs    
-        $(window).bind('hashchange', createHashHandler(this));
-        $(window).bind('load', createHashHandler(this));
+        $(window).bind('hashchange', this._createHashHandler('hashchange'));
+        //$(window).bind('load', this._createHashHandler('load'));
+
+        this.enableHashHandler=true;
     }
 
-    function createHashHandler(t) {
-
-        var defaultConfig;
-        for (c in t.configs)
-            if (t.configs[c].defaultPage)
-                defaultConfig = t.configs[c];
-
-        return function () {
-            var newHash = window.location.hash.substring(1);
-            newHash = newHash.replace('/', '');
-            if (t.currentHash != newHash && t.configs) {
-                var segements = newHash.split('/');
-                var config;
-                if (segements[0] == "")
-                    config = defaultConfig;
-                else
-                    config = t.configs[segements[0]];
-
-                t.loadContentObj(config, segements.splice(1));
-            }
-        }
-    }
 
     dynamicContentLoader.prototype = {
-        clear: function () {
+        _createHashHandler: function (state) {
+
+            var t= this;
+            var defaultConfig;
+            for (c in t.configs)
+                if (t.configs[c].defaultPage)
+                    defaultConfig = t.configs[c];
+
+            return function () {
+                console.log('state',state);
+                if(!t.enableHashHandler) return;
+                var newHash = window.location.hash.substring(1);
+                newHash = newHash.replace('/', '');
+                if (t.currentHash != newHash && t.configs) {
+                    var segments = newHash.split('/');
+                    var config;
+                    if (segments[0] )
+                        config = t.configs[segments[0]];
+                    //else
+                    //    config = defaultConfig;
+
+                    t.loadContentObj(config, segments.splice(1));
+                }
+            }
+        }
+        , clear: function () {
             this.$dynamicContentContainer.empty();
             $('[dynamicContent=true]').remove();
-            //close all dialogs
-            //$(".ui-dialog-content").dialog("close");
-            $(".modal").modal('hide');
-            if (typeof (hideAlert) == "function") hideAlert();
         }
         /*
          Description:
@@ -94,6 +95,7 @@ define(function () {
             }
             else
                 this.lastPageLoaded = pageUrl;
+
             console.log('dynamically load', pageName, pageUrl);
 
             //destroy old content resources
@@ -121,10 +123,10 @@ define(function () {
 
 
             /// change url with hash so the the browser can keep history
-
+            this.enableHashHandler = false;
             this.currentHash = pageName.replace('/', '');
             window.location.hash = pageName;
-
+            this.enableHashHandler = true;
             //load new
             /// loads html file "/pages/[page]/[page.html]"
             var t = this;
