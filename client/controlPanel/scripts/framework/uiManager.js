@@ -15,6 +15,12 @@ define('uiManager', function () {
             $('.header:first').removeClass('merge-header');
             return this;
         },
+        toggleSidebar:function(){
+            if($('#sidebar:first').is(":visible"))
+                this.hideSidebar();
+            else
+            this.showSidebar();
+        },
         showSidebar: function () {
             $('#sidebar').removeClass('hide-left-bar');
             $('#main-content').removeClass('merge-left');

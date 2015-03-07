@@ -11,6 +11,7 @@
         if (mainMenu)
             mainMenu.init({ pages: manifest.pages, dynamicLoader: manifest.dynamicLoader });
 
+        $('.sidebar-toggle-box:first').click(function(){uiManager.toggleSidebar()});
         uiManager.showBody();
         uiManager.hideSpinner();
     });
