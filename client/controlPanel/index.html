@@ -13,18 +13,6 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <script type="text/javascript" src="/scripts/lib/require.js"></script>
-    <script>
-        requirejs.config({
-            appDir: "../"
-            , baseUrl: 'scripts/framework'
-            , paths: {
-                lib: '../lib'
-                , pages: '../../pages'
-            }
-        });
-
-    </script>
 
     <!--Core CSS -->
     <!-- Custom styles for this template -->
@@ -47,23 +35,22 @@
             </div>
 
             <!--logo end-->
-            <div class="nav notify-row" id="top_menu" style="margin-top:0 !important;">
+            <div class="nav notify-row" id="top_menu" style="margin-top:0 !important;" >
                 <h1 id="pageTitle"></h1>
-
             </div>
             <div class="top-nav clearfix">
                 <!--search & user info start-->
-                <ul class="nav pull-right top-menu">
+                <ul class="nav pull-right top-menu" ng-controller="profileCtrl">
                     <!-- user login dropdown start-->
-                    <li id="ddlUserProfile" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <li id="ddlUserProfile" class="dropdown" >
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="">
                             <img alt="" src="images/avatar1_small.jpg">
-                            <span id="currentUserName" class="username"></span>
+                            <span id="currentUserName">{{user.username}}</span>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu extended logout">
+                        <ul class="dropdown-menu extended logout" ng-show="user.username">
                             <li><a href="#profile"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                            <li><a id="profileLogout"><i class="fa fa-key"></i>Log Out</a></li>
+                            <li><a id="profileLogout" href="" ng-click="logout()" ><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
 
@@ -74,10 +61,12 @@
         <!--header end-->
         <!--sidebar start-->
         <aside>
-            <div id="sidebar" class="nav-collapse" >
+            <div id="sidebar" class="nav-collapse" ng-controller="menuCtrl">
                 <!-- sidebar menu start-->
                 <div class="leftside-navigation">
-                    <ul class="sidebar-menu" id="nav-accordion"></ul>
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li ng-repeat="page in pages" ><a href='#/{{page.hash}}' class="{{page.className}}" ><i/>{{page.title}}</a></li>
+                    </ul>
                 </div>
                 <!-- sidebar menu end-->
             </div>
@@ -105,10 +94,16 @@
     <script>
         var $javuApp = angular.module('javu',['ngRoute']);
     </script>
-    <!-- common api framework -->
-    <script src="/scripts/framework/javuAPI.js"></script>
+
     <!-- Page JS -->
     <script type="text/javascript" src="routes.js"></script>
+    <script type="text/javascript" src="/scripts/framework/authManager.js"></script>
+    <script src="/scripts/framework/httpSecurityInterceptor.js"></script>
+    <script type="text/javascript" src="/scripts/framework/uiManager.js"></script>
+
+    <script type="text/javascript" src="/scripts/framework/profileCtrl.js"></script>
+    <script type="text/javascript" src="/pages/login/loginCtrl.js"></script>
+    <script type="text/javascript" src="/pages/dashboard/dashboardCtrl.js"></script>
 
     <script type="text/javascript" src="/scripts/lib/dateTimeFormater.js"></script>
 

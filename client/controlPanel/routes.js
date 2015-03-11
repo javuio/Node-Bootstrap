@@ -1,30 +1,30 @@
-﻿//$(document).ready(function () {
-
-
-$javuApp.config(function($routeProvider){
+﻿$javuApp.config(function($routeProvider){
     $routeProvider
         .when('/',{
             templateUrl:'/pages/dashboard/dashboardPage.html'
-            ,controller:'/pages/dashboard/dashboardCtrl.js'
+            ,controller:'dashboardCtrl'
         })
-        .otherwise({redirectTo:'/'});
+        .when('/login',{
+            templateUrl:'/pages/login/loginPage.html'
+            ,controller:'loginCtrl'
+        })
+        .when('/page1',{
+            templateUrl:'/pages/page1/page1Page.html'
+            //,controller:'page1Ctrl'
+        })
+        .when('/forgotPassword',{
+            templateUrl:'/pages/forgotPassword/forgotPasswordPage.html'
+            ,controller:'forgotPasswordCtrl'
+        })
+        .when('/404',{
+            templateUrl:'/pages/404/404Page.html'
+        })
+        .otherwise({redirectTo:'/404'});
 });
 
-
-
-/*
-    require(['masterPageController', 'mainMenu', 'manifest','uiManager'], function (masterPageController, mainMenu, manifest,uiManager) {
-
-        masterPageController.init();
-
-        /// when moving from page to page make sure alerts, spinner and others are all reset
-        manifest.dynamicLoader.callbacks.push(function(){uiManager.reset();});
-
-        if (mainMenu)
-            mainMenu.init({ pages: manifest.pages, dynamicLoader: manifest.dynamicLoader });
-
-        uiManager.showBody();
-        uiManager.hideSpinner();
-    });
-    */
-//});
+$javuApp.controller('menuCtrl',['$scope', function ($scope) {
+    $scope.pages= [
+        {title:'Dashboard', hash: '', className:''}
+        ,{title:'Page 1', hash: 'page1', className:''}
+    ];
+}]);
