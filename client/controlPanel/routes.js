@@ -1,23 +1,23 @@
 ﻿$javuApp.config(function($routeProvider){
     $routeProvider
         .when('/',{
-            templateUrl:'/pages/dashboard/dashboardPage.html'
+            templateUrl:'/pages/templates/dashboard.html'
             ,controller:'dashboardCtrl'
         })
         .when('/login',{
-            templateUrl:'/pages/login/loginPage.html'
+            templateUrl:'/pages/templates/login.html'
             ,controller:'loginCtrl'
         })
         .when('/page1',{
-            templateUrl:'/pages/page1/page1Page.html'
+            templateUrl:'/pages/templates/page1.html'
             //,controller:'page1Ctrl'
         })
         .when('/forgotPassword',{
-            templateUrl:'/pages/forgotPassword/forgotPasswordPage.html'
+            templateUrl:'/pages/templates/forgotPassword.html'
             ,controller:'forgotPasswordCtrl'
         })
         .when('/404',{
-            templateUrl:'/pages/404/404Page.html'
+            templateUrl:'/pages/templates/404.html'
         })
         .otherwise({redirectTo:'/404'});
 });

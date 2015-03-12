@@ -13,6 +13,11 @@ var environments = {
             ,{route:'/styles', path:'/../client/_shared/styles/'}
             ,{route:'/images', path:'/../client/_shared/images/'}
         ]
+        , jsMinifyFolders:[
+            {path:'/../client/_shared/scripts/',shrinkSubFolder:true}
+            ,{path:'/../client/_shared/controlPanel/scripts/',shrinkSubFolder:true}
+            ,{path:'/../client/_shared/controlPanel/pages/controllers/',shrinkSubFolder:true}
+        ]
         ,mysqlConfig : {
             host : '127.0.0.1'
             ,user: 'apiUser' /// only has execution rights
@@ -52,6 +57,11 @@ var environments = {
             ,{route:'/scripts',path:'/../client/_shared/scripts/'}
             ,{route:'/styles', path:'/../client/_shared/styles/'}
             ,{route:'/images', path:'/../client/_shared/images/'}
+        ]
+        , jsMinifyFolders:[
+            {path:'/../client/_shared/scripts/',shrinkSubFolder:true}
+            ,{path:'/../client/_shared/controlPanel/scripts/',shrinkSubFolder:true}
+            ,{path:'/../client/_shared/controlPanel/pages/controllers/',shrinkSubFolder:true}
         ]
         ,mysqlConfig : {
             host : '127.0.0.1'

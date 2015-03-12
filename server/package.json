@@ -20,6 +20,7 @@
     "node-uuid":"1.4.*",
     "winston": "0.8.3",
     "winston-loggly" : "1.0.2",
-    "longjohn":"0.2.*"
+    "longjohn":"0.2.*",
+    "uglify-js":"2.4.*"
   }
 }

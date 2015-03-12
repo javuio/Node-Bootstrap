@@ -44,8 +44,12 @@ if(!config.debugMode) {
 
 }
 
+/// Minify client JS/////////////////////////////////////////////////////////////////
+var testAPIs = require('./utils/jsMinifier.js').shrinkFolders(config.jsMinifyFolders);
+
+
 /// Register API's and API Tester/////////////////////////////////////////////////////////////////
-var testAPIs = require('./utils/apiRegistar.js')(app,config);
+var testAPIs = require('./utils/apiRegistrar.js')(app,config);
 
 
 /// Run server /////////////////////////////////////////////////////////////////
