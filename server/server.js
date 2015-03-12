@@ -45,7 +45,7 @@ if(!config.debugMode) {
 }
 
 /// Minify client JS/////////////////////////////////////////////////////////////////
-var testAPIs = require('./utils/jsMinifier.js').shrinkFolders(config.jsMinifyFolders);
+var testAPIs = require('./utils/jsMinifier.js').minifyFolders(config.jsMinifyFolders);
 
 
 /// Register API's and API Tester/////////////////////////////////////////////////////////////////

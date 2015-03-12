@@ -14,9 +14,9 @@ var environments = {
             ,{route:'/images', path:'/../client/_shared/images/'}
         ]
         , jsMinifyFolders:[
-            {path:'/../client/_shared/scripts/',shrinkSubFolder:true}
-            ,{path:'/../client/_shared/controlPanel/scripts/',shrinkSubFolder:true}
-            ,{path:'/../client/_shared/controlPanel/pages/controllers/',shrinkSubFolder:true}
+            {path:'/../client/_shared/scripts/',minifySubFolder:true}
+            ,{path:'/../client/controlPanel/scripts/',minifySubFolder:true}
+            ,{path:'/../client/controlPanel/pages/controllers/',minifySubFolder:true}
         ]
         ,mysqlConfig : {
             host : '127.0.0.1'
@@ -54,14 +54,14 @@ var environments = {
         , module:"controlPanel"
         ,staticContent: [
             {route:'/', path:'/../client/controlPanel/'}
-            ,{route:'/scripts',path:'/../client/_shared/scripts/'}
-            ,{route:'/styles', path:'/../client/_shared/styles/'}
-            ,{route:'/images', path:'/../client/_shared/images/'}
+            ,{route:'/scripts',path:'../client/_shared/scripts/'}
+            ,{route:'/styles', path:'../client/_shared/styles/'}
+            ,{route:'/images', path:'../client/_shared/images/'}
         ]
         , jsMinifyFolders:[
-            {path:'/../client/_shared/scripts/',shrinkSubFolder:true}
-            ,{path:'/../client/_shared/controlPanel/scripts/',shrinkSubFolder:true}
-            ,{path:'/../client/_shared/controlPanel/pages/controllers/',shrinkSubFolder:true}
+            {path:'../client/_shared/scripts/',minifySubFolder:true}
+            ,{path:'../client/controlPanel/scripts/',minifySubFolder:true}
+            ,{path:'../client/controlPanel/pages/controllers/',minifySubFolder:true}
         ]
         ,mysqlConfig : {
             host : '127.0.0.1'
