@@ -45,10 +45,13 @@ if(!config.debugMode) {
 }
 
 /// Minify client JS/////////////////////////////////////////////////////////////////
-var testAPIs = require('./utils/jsMinifier.js').minifyFolders(config.jsMinifyFolders);
-
+if(config.jsMinifyFolders && config.jsMinifyFolders.length > 0){ // if not dont bother
+    console.log('Begin minification');
+    require('./utils/jsMinifier.js').minifyFolders(config.jsMinifyFolders);
+}
 
 /// Register API's and API Tester/////////////////////////////////////////////////////////////////
+console.log('register APIs');
 var testAPIs = require('./utils/apiRegistrar.js')(app,config);
 
 

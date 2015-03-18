@@ -46,11 +46,11 @@
 
                 localStorage.setItem('user', JSON.stringify(currentUser));
             }
-            else {
+            else
                 localStorage.removeItem('user');
-            }
-            this._currentUser = currentUser;
-            this._notifyListenersAboutChange();
+
+            authManager._currentUser = currentUser;
+            authManager._notifyListenersAboutChange();
         },
         isUserLoggedIn: function () {
             return (this.getCurrentUser() != null);

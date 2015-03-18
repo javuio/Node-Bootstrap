@@ -34,16 +34,16 @@ var environments = {
                 inputToken: 'e12a0932-6ddc-4fc6-afb3-308e045ac245',
                 tags: ["devAdmin"]
             }
-        },
-        smtp: {
+        }
+        ,smtp: {
             
             username: "emailer@javu.io"
             , password: "ko4TKFp2FOXKKXjlsAiwHw"//this is the API key for Mandrill Account
-        },
-        hash: {
+        }
+        ,hash: {
             hashConfigKey: "e9e3c089-6dba-4b04-ba39-54cfef0d5c13"
-        },
-        supportEmail: "support@javu.io",
+        }
+        ,supportEmail: "support@javu.io",
         forgetPasswordSenderEmail: "support@javu.io",
         resetPasswordPage: "http://localhost:1348/resetPassword.html?tempAuthKey={authKey}",
         cypherKey : "91b7bd62-5959-46c3-9a96-bcfd0a0de372",
@@ -51,17 +51,17 @@ var environments = {
     },
     devControlPanel: {
         debugMode: true
-        , module:"controlPanel"
+        ,module:"controlPanel"
         ,staticContent: [
             {route:'/', path:'/../client/controlPanel/'}
-            ,{route:'/scripts',path:'../client/_shared/scripts/'}
-            ,{route:'/styles', path:'../client/_shared/styles/'}
-            ,{route:'/images', path:'../client/_shared/images/'}
+            ,{route:'/scripts',path:'/../client/_shared/scripts/'}
+            ,{route:'/styles', path:'/../client/_shared/styles/'}
+            ,{route:'/images', path:'/../client/_shared/images/'}
         ]
-        , jsMinifyFolders:[
-            {path:'../client/_shared/scripts/',minifySubFolder:true}
-            ,{path:'../client/controlPanel/scripts/',minifySubFolder:true}
-            ,{path:'../client/controlPanel/pages/controllers/',minifySubFolder:true}
+        ,jsMinifyFolders:[
+            //{path:'../client/_shared/scripts/',minifySubFolder:true}
+            //,{path:'../client/controlPanel/scripts/',minifySubFolder:true}
+            {path:'../client/controlPanel/pages/controllers/',minifySubFolder:true}
         ]
         ,mysqlConfig : {
             host : '127.0.0.1'
@@ -70,6 +70,8 @@ var environments = {
             ,database: productName
             , timezone: 'utc'
         }
+        ,mongoDBServer: { connectionString: "mongodb://54.149.71.236:1333/" + productName }
+        /* // loggly connection
         ,logging: {
             enableRemoteLogging: true,
             loggly: {
@@ -80,19 +82,19 @@ var environments = {
                 tags: ["devControlPanel"]
             }
         },
+        // email setup
         smtp: {
             
             username: "daniel@javu.io"
             , password: "ko4TKFp2FOXKKXjlsAiwHw"//this is the API key for Mandrill Account
-        },
-        hash: {
-            hashConfigKey: "e9e3c089-6dba-4b04-ba39-54cfef0d5c13"
-        },
-        supportEmail: "support@javu.io",
-        forgetPasswordSenderEmail: "support@javu.io",
-        resetPasswordPage: "http://localhost:1348/resetPassword.html?tempAuthKey={authKey}",
-        cypherKey : "91b7bd62-5959-46c3-9a96-bcfd0a0de372",
-        mongoDBServer: { connectionString: "mongodb://54.149.71.236:1333/" + productName }
+        }*/
+        ,hash: {
+            hashConfigKey: "e9e3c089-6dba-4b04-ba39-54cfef0d5c13" //MAKE SURE TO CHANGE THIS!!!
+        }
+        ,supportEmail: "support@javu.io"
+        ,forgetPasswordSenderEmail: "support@javu.io"
+        ,resetPasswordPage: "http://localhost:1348/resetPassword.html?tempAuthKey={authKey}"
+        ,cypherKey : "91b7bd62-5959-46c3-9a96-bcfd0a0de372"//MAKE SURE TO CHANGE THIS!!!
     }
 };
 

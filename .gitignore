@@ -37,3 +37,5 @@ node_modules
 /server/web.config
 /server/override.js
 /.idea
+all.min.js
+/client/controlPanel/pages/controllers/*.map
