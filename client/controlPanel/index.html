@@ -12,14 +12,12 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+    <!--<script type="javascript" src="/scripts/lib/bootstrap.min.js" ></script>-->
 
     <!--Core CSS -->
     <!-- Custom styles for this template -->
     <link href="/styles/style.css" rel="stylesheet">
     <link href="/styles/style-responsive.css" rel="stylesheet" />
-
-
 
 </head>
 <body>
@@ -43,17 +41,16 @@
                 <ul class="nav pull-right top-menu" ng-controller="profileCtrl">
                     <!-- user login dropdown start-->
                     <li id="ddlUserProfile" class="dropdown" >
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                        <a id="aProfileMenu" data-toggle="dropdown" class="dropdown-toggle" href="" aria-expanded="true">
                             <img alt="" src="images/avatar1_small.jpg">
                             <span id="currentUserName">{{user.username}}</span>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu extended logout" ng-show="user.username">
-                            <li><a href="#profile"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                            <li><a id="profileLogout" href="" ng-click="logout()" ><i class="fa fa-key"></i>Log Out</a></li>
+                        <ul id="profileMenuItems" class="dropdown-menu extended logout" role="menu" aria-labelledby="aProfileMenu">
+                            <li><a role="menuitem" href="#profile" tabindex="-1">Profile</a></li>
+                            <li><a id="profileLogout" role="menuitem" tabindex="-1" href="" ng-click="logout()" >Log Out</a></li>
                         </ul>
                     </li>
-
                 </ul>
                 <!--search & user info end-->
             </div>
@@ -91,8 +88,9 @@
 
     <script type="text/javascript" src="/scripts/lib/angular.min.js"></script>
     <script type="text/javascript" src="/scripts/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="/scripts/lib/ui-bootstrap-0.9.0.min.js"></script>
     <script>
-        var $javuApp = angular.module('javu',['ngRoute']);
+        var $javuApp = angular.module('javu',['ngRoute','ui.bootstrap']);
     </script>
 
     <!-- Page JS -->
@@ -101,10 +99,7 @@
     <script src="/scripts/framework/httpSecurityInterceptor.js"></script>
     <script type="text/javascript" src="/scripts/framework/uiManager.js"></script>
 
-
     <script type="text/javascript" src="/scripts/framework/profileCtrl.js"></script>
-
-
 
     <script type="text/javascript" src="/scripts/lib/dateTimeFormater.js"></script>
 

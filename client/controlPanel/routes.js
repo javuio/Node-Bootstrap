@@ -41,7 +41,7 @@ function loadControllers(){
         document.write('<script type="text/javascript" src="' + controllerFiles[i] + '"></script>');
 
 
-};
+}
 loadControllers();
 
 $javuApp.controller('menuCtrl', ['$scope', function ($scope) {
